@@ -1,0 +1,236 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+enum EActivityLogsActionType {
+  AUTH
+}
+
+enum EGender {
+  MALE
+  FEMALE
+}
+
+enum EPermission {
+  DASHBOARD
+  MEDICATION_CART_MONITORING
+  MEDICATION_CART_AND_LOCATION
+  LOCATION
+  MEDICATION_CART
+  USER_MANAGEMENT_USER_LIST
+  USER_MANAGEMENT_USER_PERMISSION
+  PATIENT_HISTORY
+  ACTIVITY_LOGS
+  SETTING
+}
+
+enum ERecordActivityLogsActionType {
+  ADMINISTER
+  CHECKER
+  DISPENSING
+  APPROVAL
+}
+
+enum ERecordActivityLogsStatus {
+  CHECK_IN
+  OPEN_LOCKER
+  CHECK_OUT
+}
+
+enum ERecordActivityLogsUnlockBy {
+  CHECK_IN
+  MANUAL
+  SCAN
+  CHECK_OUT
+}
+
+type Error {
+  res_code: String!
+  res_desc: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Login {
+  res_code: String!
+  res_desc: String!
+  accessToken: String!
+  refreshToken: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+union LoginPayload = Login | Error
+
+type Mutation {
+  seedData: String
+  login(input: LoginInput!): LoginPayload
+  refreshToken(input: RefreshTokenInput!): RefreshTokenPayload
+  recordUser(input: RecordUserInput!): RecordPayload
+  recordLocker(input: RecordLockerInput!): RecordPayload
+  recordActivityLogs(input: RecordActivityLogsInput!): RecordPayload
+  recordSetting(input: RecordSettingInput!): RecordPayload
+  recordMedicationRecord(input: RecordMedicationRecordInput!): RecordPayload
+  sendNotiLineOA(input: SendNotiLineOAInput!): SendNotiLineOAPayload
+}
+
+type Query {
+  hello: String
+}
+
+input RecordActivityLogsInput {
+  deviceID: String!
+  items: [RecordActivityLogsItemInput]
+}
+
+input RecordActivityLogsItemInput {
+  recordActivityLogID: String!
+  recordLockerID: Int!
+  UUID: String
+  hn: String
+  ward: String
+  admitDate: String
+  patientName: String
+  gender: EGender
+  roomNo: String
+  recordUserID: String!
+  username: String!
+  fullname: String!
+  status: ERecordActivityLogsStatus!
+  unlockBy: ERecordActivityLogsUnlockBy!
+  actionType: ERecordActivityLogsActionType!
+  temperature: Float
+  humidity: Float
+  reason: String
+  customAttibute: JSON
+  updatedAt: String!
+  createdAt: String!
+  recordMedicationRecordID: String!
+}
+
+input RecordLockerInput {
+  deviceID: String!
+  items: [RecordLockerItemInput]
+}
+
+input RecordLockerItemInput {
+  recordLockerID: Int!
+  UUID: String
+  hn: String
+  ward: String
+  admitDate: String
+  patientName: String
+  gender: EGender
+  roomNo: String
+  customAttibute: JSON
+  createdAt: String!
+  updatedAt: String!
+  recordMedicationRecordID: String
+}
+
+input RecordMedicationRecordInput {
+  deviceID: String!
+  items: [RecordMedicationRecordItemInput]
+}
+
+input RecordMedicationRecordItemInput {
+  recordMedicationRecordID_medicationRecordTypeName: String!
+  recordMedicationRecordID: String!
+  medicationRecordTypeName: String!
+  indexOrder: Int!
+  json: String
+  confirmJson: String
+  customAttibute: JSON
+  createdAt: String!
+  updatedAt: String!
+}
+
+type RecordPayload {
+  res_code: String!
+  res_desc: String!
+}
+
+input RecordSettingInput {
+  deviceID: String!
+  items: [RecordSettingItemInput]
+}
+
+input RecordSettingItemInput {
+  recordSettingID: String!
+  deviceID: String!
+  isAuthentication: Int!
+  isNotification: Int!
+  timeoutNotification: Int!
+  amountLocker: Int!
+  isDoubleCheck: Int!
+  isHnOrAn: String!
+  endpointGetHN: String
+  endpointGetMedicine: String
+  pathChrome: String!
+  ward: String
+  syncUserRoleUpdateAt: String
+  syncUserUpdateAt: String
+  syncSettingUpdateAt: String
+  syncMedicationRecordTypeUpdateAt: String
+  syncMedicineUpdateAt: String
+  syncLockerUpdateAt: String
+  syncMedicationRecordUpdateAt: String
+  syncActivityLogsUpdateAt: String
+  intervalToServer: Int
+  customAttibute: JSON
+}
+
+input RecordUserInput {
+  deviceID: String!
+  items: [RecordUserItemInput]
+}
+
+input RecordUserItemInput {
+  recordUserID: String!
+  username: String!
+  passwordHash: String
+  fullname: String!
+  userRoleName: String!
+  isActive: Int!
+  customAttibute: JSON
+  createdAt: String!
+  updatedAt: String!
+}
+
+type RefreshToken {
+  res_code: String!
+  res_desc: String!
+  accessToken: String!
+  refreshToken: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+union RefreshTokenPayload = RefreshToken | Error
+
+input SendNotiLineOAInput {
+  deviceID: String!
+  temp: Float!
+  humidity: Float!
+}
+
+type SendNotiLineOAPayload {
+  res_code: String!
+  res_desc: String!
+}
+

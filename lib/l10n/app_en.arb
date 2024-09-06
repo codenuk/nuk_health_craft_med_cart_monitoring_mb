@@ -1,0 +1,7 @@
+{
+  "hello": "Hello World!",
+  "@hello": {
+    "description": "The conventional greeting"
+  },
+  "switchLang": "Switch Lang"
+}

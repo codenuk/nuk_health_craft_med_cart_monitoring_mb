@@ -1,0 +1,7 @@
+{
+  "hello": "สวัสดี!",
+  "@hello": {
+    "description": "The conventional greeting"
+  },
+  "switchLang": "เปลี่ยนภาษา"
+}

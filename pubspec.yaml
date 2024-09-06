@@ -1,0 +1,70 @@
+name: health_craft_med_cart_monitoring_mb
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 0.0.1+1
+
+environment:
+  sdk: ^3.1.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  provider: ^6.0.0
+  flutter_animate: ^4.5.0
+  flutter_launcher_icons: ^0.13.1 # https://pub.dev/packages/flutter_launcher_icons
+  flutter_native_splash: ^2.4.1 # https://pub.dev/packages/flutter_native_splash
+  go_router: ^14.2.6
+  shared_preferences: ^2.3.1 # Local storage of mobile app
+  fl_chart: ^0.69.0 # https://pub.dev/packages/fl_chart
+  package_info_plus: ^8.0.2 # https://pub.dev/packages/package_info_plus/example
+  lottie: ^3.1.2
+  flutter_dotenv: ^5.1.0
+  intl: ^0.19.0
+  graphql_flutter: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.4.11
+  graphql_codegen: ^1.0.1
+
+flutter_native_splash:
+  android: true
+  ios: true
+  image: "assets/logos/splash_logo.png"
+  color: "#ffffff"
+  android_12:
+    image: "assets/logos/splash_logo.png"
+    icon_background_color: "#ffffff"
+    
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/app_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - .env
+    - assets/
+    - assets/fonts/
+    - assets/images/
+    - assets/logos/
+    - assets/icons/
+    - assets/models/
+    - assets/lotties/
+    - assets/images/login/
+    - assets/images/launchpad/
+
+  fonts:
+    - family: FC_iconic
+      fonts:
+        - asset: assets/fonts/FC-Iconic-Bold.ttf
+        - asset: assets/fonts/FC-Iconic-Regular.ttf
