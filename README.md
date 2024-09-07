@@ -18,3 +18,5 @@ flutter gen-l10n
 
 ## Noted
 - About go_router, how to navigate page between go and push. [Click](https://stackoverflow.com/a/76008627)
+- [Medium Go route](https://medium.com/@vimehraa29/flutter-go-router-the-crucial-guide-41dc615045bb)
+- [Medium Set design system](https://medium.com/@mregnauld/how-to-implement-your-design-system-in-a-flutter-app-1-2-d2e21b5fcffd)
