@@ -4,7 +4,10 @@ import 'package:health_craft_med_cart_monitoring_mb/components/shares/footer.dar
 class Layout extends StatelessWidget {
   final Widget child;
 
-  const Layout({required this.child, Key? key}) : super(key: key);
+  const Layout({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -74,7 +74,8 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                   routerConfig: _router,
-                  locale: lang == 'EN' ? Locale('en', 'EN') : Locale('th', 'TH'),
+                  locale:
+                      lang == 'EN' ? Locale('en', 'EN') : Locale('th', 'TH'),
                   localizationsDelegates: [
                     L10n.delegate,
                     GlobalMaterialLocalizations.delegate,
@@ -103,6 +104,26 @@ extension ThemeDataExtended on ThemeData {
 
 final _router = GoRouter(
   initialLocation: '/splash',
+  redirect: (context, state) {
+    // Access the GlobalState (or any authentication state)
+    final globalState = context.read<GlobalState>();
+
+    // If the user is not authenticated (no accessToken), redirect to login page
+    final bool isAuthenticated = globalState.accessToken != null;
+
+    // If the user is not authenticated and is not on the login or splash page, redirect to login
+    if (!isAuthenticated && state.fullPath != '/login' && state.fullPath != '/splash') {
+      return '/login';
+    }
+
+    // If already authenticated and trying to access login, redirect to home (launchpad)
+    if (isAuthenticated && state.fullPath == '/login') {
+      return '/';
+    }
+
+    // No redirection needed
+    return null;
+  },
   routes: [
     GoRoute(
       name: 'splash',

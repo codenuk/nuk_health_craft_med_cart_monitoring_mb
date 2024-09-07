@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
-import 'package:health_craft_med_cart_monitoring_mb/state/index.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -17,7 +15,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    context.read<GlobalState>().initPackageInfo();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(seconds: 2), () async {
         context.go('/login');

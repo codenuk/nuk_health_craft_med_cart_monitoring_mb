@@ -1,0 +1,15 @@
+mutation login($input: LoginInput!) {
+  login(input: $input) {
+    __typename
+    ... on Login {
+      res_code
+      res_desc
+      accessToken
+      refreshToken
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

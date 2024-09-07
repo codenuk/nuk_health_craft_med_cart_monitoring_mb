@@ -4,12 +4,18 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/button.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/input/base.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/input/password.dart';
+import 'package:health_craft_med_cart_monitoring_mb/components/base/loading_dialog.dart';
+import 'package:health_craft_med_cart_monitoring_mb/components/base/snackbar.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/auth.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/schema.graphql.dart';
 import 'package:health_craft_med_cart_monitoring_mb/layouts/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 import 'package:health_craft_med_cart_monitoring_mb/services/authentication.dart';
+import 'package:health_craft_med_cart_monitoring_mb/state/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
 import 'package:health_craft_med_cart_monitoring_mb/validated/others.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,13 +27,52 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void onSubmit() {
-    if (_formKey.currentState!.validate()) {
-      // LoginService().login(input: {});
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Processing Data')),
-      );
-      context.go('/');
+  Future<void> onSubmit() async {
+    showLoadingDialog(context);
+
+    try {
+      if (_formKey.currentState!.validate()) {
+        Mutation$login$login? loginResult = await LoginService().login(
+          input: Input$LoginInput(
+            username: usernameController.text,
+            password: passwordController.text,
+          ),
+        );
+
+        // Handle the result
+        if (loginResult != null) {
+          loginResult.when(
+            login: (loginData) {
+              // Handle successful login
+              print("Login successful!");
+              context
+                  .read<GlobalState>()
+                  .setCredential(loginData.accessToken, loginData.refreshToken);
+
+              showSnackBarSuccess(context, 'Login Success');
+              context.go('/');
+            },
+            error: (errorData) {
+              // Handle error response
+              print("Login failed with error: ${errorData.res_desc}");
+              showSnackBarError(context, errorData.res_desc);
+            },
+            orElse: () {
+              // Handle an unknown or unexpected response type
+              print("Unknown response type");
+              showSnackBarError(context, 'Invalid');
+            },
+          );
+        } else {
+          // Handle the case where an exception occurred or login failed
+          print("Login failed due to an exception or unknown error.");
+          showSnackBarError(context, 'Invalid');
+        }
+      }
+    } catch (e) {
+      print('error function login, $e');
+    } finally {
+      hideLoadingDialog(context);
     }
   }
 

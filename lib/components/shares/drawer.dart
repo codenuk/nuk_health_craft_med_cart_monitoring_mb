@@ -30,6 +30,11 @@ class ExpansionTileData {
 class MedDrawer extends StatelessWidget {
   const MedDrawer({super.key});
 
+  void handleLogout(BuildContext context) {
+    context.go('/login');
+    context.read<GlobalState>().clearCredential();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<ExpansionTileData> menu = [
@@ -266,7 +271,7 @@ class MedDrawer extends StatelessWidget {
                 ),
                 SizedBox(height: 15),
                 GestureDetector(
-                  onTap: () => context.go('/login'),
+                  onTap: () => handleLogout(context),
                   child: Row(
                     children: [
                       Icon(

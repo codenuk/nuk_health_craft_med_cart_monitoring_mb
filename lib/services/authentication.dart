@@ -1,51 +1,41 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:health_craft_med_cart_monitoring_mb/configs/graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/schema.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/auth.graphql.dart';
 
 class LoginService {
   static GraphqlQLConfig graphqlQLConfig = GraphqlQLConfig();
   GraphQLClient client = graphqlQLConfig.clientToQuery();
 
-  Future<bool> login({
-    required dynamic input,
+  Future<Mutation$login$login?> login({
+    required Input$LoginInput input,
   }) async {
     try {
+      // Create typed variables using Variables$Mutation$login
+      Variables$Mutation$login variables =
+          Variables$Mutation$login(input: input);
+
       QueryResult result = await client.mutate(
         MutationOptions(
           fetchPolicy: FetchPolicy.noCache,
-          document: gql("""
-            mutation login(\$input: LoginInput!) {
-              login(input: \$input) {
-                __typename
-                ... on Login {
-                  res_code
-                  res_desc
-                  accessToken 
-                  refreshToken
-                }
-                ... on Error {
-                  res_code
-                  res_desc
-                }
-              }
-            }
-            """),
-          variables: {
-            "input": {
-              "username": "codenuk",
-              "password": "123456"
-            },
-          },
+          document:
+              documentNodeMutationlogin, // Use the pre-defined DocumentNode for the mutation
+          variables: variables.toJson(), // Use toJson() to pass typed variables
         ),
       );
 
-      print(result);
       if (result.hasException) {
         throw Exception(result.exception);
       } else {
-        return true;
+        // Parse the typed response
+        Mutation$login loginResponse =
+            Mutation$login.fromJson(result.data ?? {});
+
+        // Return the actual login response (either success or error)
+        return loginResponse.login;
       }
     } catch (e) {
-      return false;
+      return null;
     }
   }
 }
