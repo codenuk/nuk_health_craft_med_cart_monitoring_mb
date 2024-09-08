@@ -1,8 +1,17 @@
 targets:
-  $default:
+  nonAuth:
     builders:
       graphql_codegen:
         options:
-          schema: lib/graphql/schema.graphql
-          queries_glob: lib/graphql/*.graphql
-          output: lib/schema.dart
+          schema: lib/graphql/nonAuth/schema.graphql
+          queries_glob: lib/graphql/nonAuth/*.graphql
+          output: lib/graphql/nonAuth/schema.dart
+
+  auth:
+    builders:
+      graphql_codegen:
+        options:
+          # Configure the second API (auth)
+          schema: lib/graphql/auth/schema.graphql
+          queries_glob: lib/graphql/auth/*.graphql
+          output: lib/graphql/auth/schema.dart

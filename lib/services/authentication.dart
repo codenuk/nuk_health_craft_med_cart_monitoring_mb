@@ -1,7 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:health_craft_med_cart_monitoring_mb/configs/graphql.dart';
-import 'package:health_craft_med_cart_monitoring_mb/graphql/schema.graphql.dart';
-import 'package:health_craft_med_cart_monitoring_mb/graphql/auth.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/nonAuth/schema.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/nonAuth/login.graphql.dart';
 
 class LoginService {
   static GraphqlQLConfig graphqlQLConfig = GraphqlQLConfig();
@@ -39,3 +39,4 @@ class LoginService {
     }
   }
 }
+

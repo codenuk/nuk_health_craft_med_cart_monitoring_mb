@@ -1,0 +1,40 @@
+query MonitoringDeviceInBuilding(
+  $filter: MonitoringDeviceInBuildingFilterInput!
+) {
+  monitoringDeviceInBuilding(filter: $filter) {
+    __typename
+    ... on MonitoringDeviceInBuilding {
+      res_code
+      res_desc
+      floorList {
+        floorID
+        floorName
+        isActive # Only true
+        index # Before response, sort index asc
+        wardList {
+          wardID
+          wardName
+          isActive # Only true
+          index # Before response, sort index asc
+          deviceList {
+            deviceID
+            isActive
+            model
+            deviceName
+
+            location
+
+            # Data from locker
+            temperature
+            amountPatient # in locker now
+            updatedAt
+          }
+        }
+      }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

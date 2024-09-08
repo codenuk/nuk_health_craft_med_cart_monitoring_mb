@@ -12,9 +12,13 @@ flutter gen-l10n
 ```
 
 ## How to generate type gql in dart
-1. Install ```npm install -g get-graphql-schema```
-2. Run command ```get-graphql-schema https://asarn28lj2.execute-api.ap-southeast-1.amazonaws.com/dev/v1/graphqlNonAuth > lib/graphql/schema.graphql``` -> For generate File `lib/graphql/schema.graphql`
-3. Run command ```flutter pub run build_runner build``` For convert file `schema.graphql` to `schema.graphql.dart`
+```sh
+$ npm install -g get-graphql-schema
+$ get-graphql-schema https://asarn28lj2.execute-api.ap-southeast-1.amazonaws.com/dev/v1/graphqlNonAuth > lib/graphql/nonAuth/schema.graphql
+$ get-graphql-schema --header "Authorization=Bearer TOKEN" https://asarn28lj2.execute-api.ap-southeast-1.amazonaws.com/dev/v1/graphql > lib/graphql/auth/schema.graphql
+ > lib/graphql/auth/schema.graphql
+$ flutter pub run build_runner build
+```
 
 ## Noted
 - About go_router, how to navigate page between go and push. [Click](https://stackoverflow.com/a/76008627)

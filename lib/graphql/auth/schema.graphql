@@ -1,0 +1,846 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type ActivityLogList {
+  res_code: String!
+  res_desc: String!
+  nextToken: String
+  items: [ActivityLogs]
+}
+
+input ActivityLogListFilterInput {
+  month: Int!
+  year: Int!
+  actionType: EActivityLogsActionType
+}
+
+union ActivityLogListPayload = ActivityLogList | Error
+
+input ActivityLogListSortInput {
+  createdAt: EOrderBy
+}
+
+type ActivityLogs {
+  activityLogID: String!
+  actionType: String!
+  username: String!
+  fullname: String!
+  msg: String!
+  createdAt: String!
+}
+
+type AllBuilding {
+  res_code: String!
+  res_desc: String!
+  items: [AllBuildingItem]
+}
+
+type AllBuildingItem {
+  buildingID: String!
+  buildingName: String!
+  isActive: Boolean!
+  index: Int!
+}
+
+union AllBuildingPayload = AllBuilding | Error
+
+type AllFloor {
+  res_code: String!
+  res_desc: String!
+  items: [AllFloorItem]
+}
+
+type AllFloorInBuilding {
+  res_code: String!
+  res_desc: String!
+  items: [AllFloorInBuildingItem]
+}
+
+input AllFloorInBuildingFilterInput {
+  buildingID: String!
+}
+
+type AllFloorInBuildingItem {
+  buildingID: String!
+  floorID: String!
+  floorName: String!
+  isActive: Boolean!
+  index: Int!
+}
+
+union AllFloorInBuildingPayload = AllFloorInBuilding | Error
+
+type AllFloorItem {
+  buildingID: String!
+  floorID: String!
+  floorName: String!
+  isActive: Boolean!
+  index: Int!
+}
+
+union AllFloorPayload = AllFloor | Error
+
+type AllLocation {
+  res_code: String!
+  res_desc: String!
+  buildingList: [BuildingItem]
+}
+
+union AllLocationPayload = AllLocation | Error
+
+type AllWard {
+  res_code: String!
+  res_desc: String!
+  items: [AllWardItem]
+}
+
+type AllWardInFloor {
+  res_code: String!
+  res_desc: String!
+  items: [AllWardInFloorItem]
+}
+
+input AllWardInFloorFilterInput {
+  buildingID: String!
+  floorID: String!
+}
+
+type AllWardInFloorItem {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  wardName: String!
+  isActive: Boolean!
+  index: Int!
+}
+
+union AllWardInFloorPayload = AllWardInFloor | Error
+
+type AllWardItem {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  wardName: String!
+  isActive: Boolean!
+  index: Int!
+}
+
+union AllWardPayload = AllWard | Error
+
+type BuildingItem {
+  buildingID: String!
+  buildingName: String!
+  isActive: Boolean!
+  index: Int!
+  amountDeviceInBuilding: Int!
+  floorList: [FloorItem]
+}
+
+input ChangePasswordInput {
+  userID: String!
+  passwordOld: String!
+  passwordNew: String!
+}
+
+input CreateBuildingInput {
+  buildingName: String!
+  index: Int!
+}
+
+input CreateDeviceInput {
+  deviceID: String!
+  isActive: Boolean!
+  customAttibute: JSON
+  imageURL: String
+  model: String!
+  nurseHead: String
+  deviceName: String
+}
+
+input CreateFloorInput {
+  buildingID: String!
+  floorName: String!
+  index: Int!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  fullname: String!
+  imageURL: String
+  userRoleID: String!
+  customAttibute: JSON
+}
+
+input CreateUserRoleInput {
+  userRoleName: String!
+  permission: [EPermission]!
+  isActive: Boolean!
+  customAttibute: JSON
+}
+
+input CreateWardInput {
+  buildingID: String!
+  floorID: String!
+  wardName: String!
+  index: Int!
+}
+
+type Daily {
+  day: String!
+  amountCheckIn: Int
+  amountCheckOut: Int
+}
+
+type Dashboard {
+  res_code: String!
+  res_desc: String!
+  totalPatient: Int
+  totalMedCart: TotalMedCart!
+  totalMalePatient: PercentAmount!
+  totalFemalePatient: PercentAmount!
+  totalDispensingByQrCode: TotalDispensingBy!
+  totalDispensingByManual: TotalDispensingBy!
+  totalReasonDischarge: PercentAmount!
+  totalReasonMovePatientToAnotherDrawer: PercentAmount!
+  totalReasonDischargeDeath: PercentAmount!
+  totalReasonMovePatientToAnotherWard: PercentAmount!
+  patientTrafficByTime: [Hourly]
+  patientTrafficByDays: [Daily]
+  performanceByWeek: [PerformanceByWeek]
+}
+
+input DashboardFilterInput {
+  wardID: String
+  year: Int!
+}
+
+union DashboardPayload = Dashboard | Error
+
+input DeleteBuildingInput {
+  buildingID: String!
+}
+
+input DeleteFloorInput {
+  buildingID: String!
+  floorID: String!
+}
+
+input DeleteLocationDeviceInput {
+  deviceID: String!
+}
+
+input DeleteUserInput {
+  userID: String!
+}
+
+input DeleteWardInput {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+}
+
+type Device {
+  res_code: String!
+  res_desc: String!
+  deviceID: String!
+  isActive: Boolean!
+  model: String!
+  deviceName: String
+  nurseHead: String
+  customAttibute: JSON
+  imageURL: String
+  createdAt: String!
+  updatedAt: String!
+  location: String
+}
+
+input DeviceFilterInput {
+  deviceID: String
+  isActive: Boolean!
+  createdAt: DurationTimeInput
+  updatedAt: DurationTimeInput
+  isAvaliable: Boolean
+}
+
+type DeviceItem {
+  deviceID: String!
+  deviceName: String
+  isActive: Boolean!
+  model: String!
+}
+
+type DeviceList {
+  res_code: String!
+  res_desc: String!
+  nextToken: String
+  items: [Device]
+}
+
+union DeviceListPayload = DeviceList | Error
+
+input DeviceSortInput {
+  deviceID: EOrderBy
+  createdAt: EOrderBy
+  updatedAt: EOrderBy
+}
+
+input DurationTimeInput {
+  startDate: String
+  endDate: String
+}
+
+enum EActivityLogsActionType {
+  AUTH
+}
+
+enum EGender {
+  MALE
+  FEMALE
+}
+
+enum EOrderBy {
+  asc
+  desc
+}
+
+enum EPermission {
+  DASHBOARD
+  MEDICATION_CART_MONITORING
+  MEDICATION_CART_AND_LOCATION
+  LOCATION
+  MEDICATION_CART
+  USER_MANAGEMENT_USER_LIST
+  USER_MANAGEMENT_USER_PERMISSION
+  PATIENT_HISTORY
+  ACTIVITY_LOGS
+  SETTING
+}
+
+enum ERecordActivityLogsActionType {
+  ADMINISTER
+  CHECKER
+  DISPENSING
+  APPROVAL
+}
+
+enum ERecordActivityLogsStatus {
+  CHECK_IN
+  OPEN_LOCKER
+  CHECK_OUT
+}
+
+enum ERecordActivityLogsUnlockBy {
+  CHECK_IN
+  MANUAL
+  SCAN
+  CHECK_OUT
+}
+
+type Error {
+  res_code: String!
+  res_desc: String!
+}
+
+type FloorItem {
+  buildingID: String!
+  floorID: String!
+  floorName: String!
+  isActive: Boolean!
+  index: Int!
+  amountDeviceInFloor: Int!
+  wardList: [WardItem]
+}
+
+type HospitalInfo {
+  res_code: String!
+  res_desc: String!
+  hospitalID: String!
+  hospitalName: String!
+}
+
+union HospitalInfoPayload = HospitalInfo | Error
+
+type Hourly {
+  hour: String!
+  organize: HourlyValue
+  check: HourlyValue
+  dispensing: HourlyValue
+  approval: HourlyValue
+}
+
+type HourlyValue {
+  amount: Int
+  totalUser: Int
+  totalMedCart: Int
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type MDIBDevice {
+  deviceID: String!
+  isActive: Boolean!
+  model: String!
+  deviceName: String
+  location: String
+  temperature: Float
+  amountPatient: Int
+  updatedAt: String
+}
+
+type MDIBFloor {
+  floorID: String!
+  floorName: String!
+  isActive: Boolean!
+  index: Int!
+  wardList: [MDIBWard]
+}
+
+type MDIBLocker {
+  recordLockerID: Int
+  patientName: String
+  hn: String
+  roomNo: String
+}
+
+type MDIBWard {
+  wardID: String!
+  wardName: String!
+  isActive: Boolean!
+  index: Int!
+  deviceList: [MDIBDevice]
+}
+
+type MonitoringDevice {
+  res_code: String!
+  res_desc: String!
+  deviceID: String!
+  isActive: Boolean!
+  model: String!
+  deviceName: String
+  imageURL: String
+  location: String!
+  temperature: Float
+  amountPatient: Int
+  amountUser: Int
+  updatedAt: String
+  totalPatient: Int
+  totalMedCart: TotalMedCart!
+  totalMalePatient: PercentAmount!
+  totalFemalePatient: PercentAmount!
+  totalDispensingByQrCode: TotalDispensingBy!
+  totalDispensingByManual: TotalDispensingBy!
+  totalReasonDischarge: PercentAmount!
+  totalReasonMovePatientToAnotherDrawer: PercentAmount!
+  totalReasonDischargeDeath: PercentAmount!
+  totalReasonMovePatientToAnotherWard: PercentAmount!
+  lockerList: [MDIBLocker]
+}
+
+input MonitoringDeviceFilterInput {
+  deviceID: String!
+}
+
+type MonitoringDeviceInBuilding {
+  res_code: String!
+  res_desc: String!
+  floorList: [MDIBFloor]
+}
+
+input MonitoringDeviceInBuildingFilterInput {
+  buildingID: String!
+}
+
+union MonitoringDeviceInBuildingPayload = MonitoringDeviceInBuilding | Error
+
+union MonitoringDevicePayload = MonitoringDevice | Error
+
+type Mutation {
+  createUser(input: CreateUserInput!): MutationUserPayload
+  updateUser(input: UpdateUserInput!): MutationUserPayload
+  changePassword(input: ChangePasswordInput!): MutationUserPayload
+  resetPassword(input: ResetPasswordInput!): MutationUserPayload
+  deleteUser(input: DeleteUserInput!): MutationUserPayload
+  createUserRole(input: CreateUserRoleInput!): MutationUserRolePayload
+  updateUserRole(input: UpdateUserRoleInput!): MutationUserRolePayload
+  createBuilding(input: CreateBuildingInput!): MutationBuildingPayload
+  updateBuilding(input: UpdateBuildingInput!): MutationBuildingPayload
+  deleteBuilding(input: DeleteBuildingInput!): MutationBuildingPayload
+  reOrderBuilding(input: ReOrderBuildingInput!): Error
+  createFloor(input: CreateFloorInput!): MutationFloorPayload
+  updateFloor(input: UpdateFloorInput!): MutationFloorPayload
+  deleteFloor(input: DeleteFloorInput!): MutationFloorPayload
+  reOrderFloor(input: ReOrderFloorInput!): Error
+  createWard(input: CreateWardInput!): MutationWardPayload
+  updateWard(input: UpdateWardInput!): MutationWardPayload
+  deleteWard(input: DeleteWardInput!): MutationWardPayload
+  reOrderWard(input: ReOrderWardInput!): Error
+  updateHospitalName(input: UpdateHospitalNameInput!): UpdateHospitalNamePayload
+  createDevice(input: CreateDeviceInput!): MutationDevicePayload
+  updateDevice(input: UpdateDeviceInput!): MutationDevicePayload
+  updateLocationDevice(input: UpdateLocationDeviceInput!): MutationDevicePayload
+  deleteLocationDevice(input: DeleteLocationDeviceInput!): MutationDevicePayload
+  uploadFile(file: Upload!): MutationUploadFilePayload!
+  printMedicalRecord(input: PrintMedicalRecordInput!): MutationMutationPrintMedicalRecordPayload!
+}
+
+type MutationBuilding {
+  res_code: String!
+  res_desc: String!
+  buildingID: String!
+}
+
+union MutationBuildingPayload = MutationBuilding | Error
+
+type MutationDevice {
+  res_code: String!
+  res_desc: String!
+  deviceID: String!
+}
+
+union MutationDevicePayload = MutationDevice | Error
+
+type MutationFloor {
+  res_code: String!
+  res_desc: String!
+  floorID: String!
+}
+
+union MutationFloorPayload = MutationFloor | Error
+
+union MutationMutationPrintMedicalRecordPayload = MutationPrintMedicalRecord | Error
+
+type MutationPrintMedicalRecord {
+  res_code: String!
+  res_desc: String!
+  pdfUrl: String!
+  case: String!
+}
+
+type MutationUploadFile {
+  res_code: String!
+  res_desc: String!
+  pathName: String!
+  fileName: String!
+  file: String!
+}
+
+union MutationUploadFilePayload = MutationUploadFile | Error
+
+type MutationUser {
+  res_code: String!
+  res_desc: String!
+  userID: String!
+}
+
+union MutationUserPayload = MutationUser | Error
+
+type MutationUserRole {
+  res_code: String!
+  res_desc: String!
+  userRoleID: String!
+}
+
+union MutationUserRolePayload = MutationUserRole | Error
+
+type MutationWard {
+  res_code: String!
+  res_desc: String!
+  wardID: String!
+}
+
+union MutationWardPayload = MutationWard | Error
+
+input PaginationInput {
+  pageSize: Int!
+  nextToken: String
+}
+
+type PercentAmount {
+  percent: Float
+  amount: Int
+}
+
+type PerformanceByWeek {
+  month: String!
+  weekNumber: Int!
+  organize: PerformanceByWeekOrganize
+  check: PerformanceByWeekCheck
+  dispensing: PerformanceByWeekCheck
+  scanQR: PerformanceByWeekCheck
+}
+
+type PerformanceByWeekCheck {
+  amount: Int
+  maxAmount: Int
+}
+
+type PerformanceByWeekOrganize {
+  amount: Int
+}
+
+input PrintMedicalRecordInput {
+  deviceID: String!
+  UUID: String!
+}
+
+type Query {
+  userList(filter: UserFilterInput!, sort: UserSortInput!, pagination: PaginationInput!): UserListPayload
+  userInfo(filter: UserInfoFilterInput!): UserInfoPayload
+  userRoleList(filter: UserRoleFilterInput!, sort: UserRoleSortInput!, pagination: PaginationInput!): UserRoleListPayload
+  allBuilding: AllBuildingPayload
+  allFloorInBuilding(filter: AllFloorInBuildingFilterInput!): AllFloorInBuildingPayload
+  allWardInFloor(filter: AllWardInFloorFilterInput!): AllWardInFloorPayload
+  allLocation: AllLocationPayload
+  hospitalInfo: HospitalInfoPayload
+  allFloor: AllFloorPayload
+  allWard: AllWardPayload
+  deviceList(filter: DeviceFilterInput!, sort: DeviceSortInput!, pagination: PaginationInput!): DeviceListPayload
+  monitoringDeviceInBuilding(filter: MonitoringDeviceInBuildingFilterInput!): MonitoringDeviceInBuildingPayload
+  monitoringDevice(filter: MonitoringDeviceFilterInput!): MonitoringDevicePayload
+  reportPatientHistory(filter: ReportPatientHistoryFilterInput!): ReportPatientHistoryPayload
+  activityLogList(filter: ActivityLogListFilterInput!, sort: ActivityLogListSortInput!, pagination: PaginationInput!): ActivityLogListPayload
+  dashboard(filter: DashboardFilterInput!): DashboardPayload
+}
+
+input ReOrderBuildingInput {
+  reOrder: [ReOrderItem]
+}
+
+input ReOrderFloorInput {
+  reOrder: [ReOrderFloorItem]
+}
+
+input ReOrderFloorItem {
+  buildingID: String!
+  floorID: String!
+  index: Int!
+}
+
+input ReOrderItem {
+  buildingID: String!
+  index: Int!
+}
+
+input ReOrderWardInput {
+  reOrder: [ReOrderWardItem]
+}
+
+input ReOrderWardItem {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  index: Int!
+}
+
+type ReportPatientHistory {
+  res_code: String!
+  res_desc: String!
+  nextToken: String
+  items: [ReportPatientHistoryItem]
+}
+
+input ReportPatientHistoryFilterInput {
+  wardID: String
+  deviceID: String
+  patientName: String
+  month: Int!
+  year: Int!
+}
+
+type ReportPatientHistoryItem {
+  UUID: String!
+  checkInDate: String!
+  roomNo: String
+  patientName: String
+  wardName: String!
+  username: String!
+  checkOutDate: String
+  deviceID: String!
+  reason: String
+  isHaveDocument: Boolean!
+}
+
+union ReportPatientHistoryPayload = ReportPatientHistory | Error
+
+input ResetPasswordInput {
+  userID: String!
+  password: String!
+}
+
+type TotalDispensingBy {
+  percent: Float
+  amount: Int
+  amountPatient: Int
+}
+
+type TotalMedCart {
+  total: Int
+  totalActive: Int
+  totalInActive: Int
+}
+
+input UpdateBuildingInput {
+  buildingID: String!
+  buildingName: String!
+}
+
+input UpdateDeviceInput {
+  deviceID: String!
+  isActive: Boolean!
+  customAttibute: JSON
+  imageURL: String
+  model: String!
+  nurseHead: String
+  deviceName: String
+}
+
+input UpdateFloorInput {
+  buildingID: String!
+  floorID: String!
+  floorName: String!
+}
+
+input UpdateHospitalNameInput {
+  hospitalName: String!
+}
+
+type UpdateHospitalNamePayload {
+  res_code: String!
+  res_desc: String!
+}
+
+input UpdateLocationDeviceInput {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  deviceID: String!
+}
+
+input UpdateUserInput {
+  userID: String!
+  username: String!
+  fullname: String!
+  imageURL: String
+  userRoleID: String!
+  customAttibute: JSON
+}
+
+input UpdateUserRoleInput {
+  userRoleID: String!
+  userRoleName: String!
+  permission: [EPermission]!
+  isActive: Boolean!
+  customAttibute: JSON
+}
+
+input UpdateWardInput {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  wardName: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  res_code: String!
+  res_desc: String!
+  userID: String!
+  username: String!
+  fullname: String!
+  isActive: Boolean!
+  imageURL: String
+  customAttibute: JSON
+  createdAt: String!
+  updatedAt: String!
+  userRoleID: String!
+  userRoleName: String!
+}
+
+input UserFilterInput {
+  fullname: String
+  userRoleID: [String]
+  isActive: Boolean!
+  createdAt: DurationTimeInput
+  updatedAt: DurationTimeInput
+}
+
+input UserInfoFilterInput {
+  userID: String!
+}
+
+union UserInfoPayload = User | Error
+
+type UserList {
+  res_code: String!
+  res_desc: String!
+  nextToken: String
+  items: [User]
+}
+
+union UserListPayload = UserList | Error
+
+type UserRole {
+  res_code: String!
+  res_desc: String!
+  userRoleID: String!
+  userRoleName: String!
+  permission: [EPermission]!
+  isActive: Boolean!
+  customAttibute: JSON
+  createdAt: String!
+  updatedAt: String!
+}
+
+input UserRoleFilterInput {
+  userRoleName: String
+  isActive: Boolean!
+  createdAt: DurationTimeInput
+  updatedAt: DurationTimeInput
+}
+
+type UserRoleList {
+  res_code: String!
+  res_desc: String!
+  nextToken: String
+  items: [UserRole]
+}
+
+union UserRoleListPayload = UserRoleList | Error
+
+input UserRoleSortInput {
+  userRoleName: EOrderBy
+  createdAt: EOrderBy
+  updatedAt: EOrderBy
+}
+
+input UserSortInput {
+  fullname: EOrderBy
+  createdAt: EOrderBy
+  updatedAt: EOrderBy
+}
+
+type WardItem {
+  buildingID: String!
+  floorID: String!
+  wardID: String!
+  wardName: String!
+  isActive: Boolean!
+  index: Int!
+  amountDeviceInWard: Int!
+  deviceList: [DeviceItem]
+}
+

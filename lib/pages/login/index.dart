@@ -6,8 +6,8 @@ import 'package:health_craft_med_cart_monitoring_mb/components/base/input/base.d
 import 'package:health_craft_med_cart_monitoring_mb/components/base/input/password.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/loading_dialog.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/snackbar.dart';
-import 'package:health_craft_med_cart_monitoring_mb/graphql/auth.graphql.dart';
-import 'package:health_craft_med_cart_monitoring_mb/graphql/schema.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/nonAuth/login.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/nonAuth/schema.graphql.dart';
 import 'package:health_craft_med_cart_monitoring_mb/layouts/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 import 'package:health_craft_med_cart_monitoring_mb/services/authentication.dart';
