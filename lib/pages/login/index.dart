@@ -39,35 +39,24 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
 
-        // Handle the result
-        if (loginResult != null) {
-          loginResult.when(
-            login: (loginData) {
-              // Handle successful login
-              print("Login successful!");
-              context
-                  .read<GlobalState>()
-                  .setCredential(loginData.accessToken, loginData.refreshToken);
+        if (loginResult == null) return;
 
-              showSnackBarSuccess(context, 'Login Success');
-              context.go('/');
-            },
-            error: (errorData) {
-              // Handle error response
-              print("Login failed with error: ${errorData.res_desc}");
-              showSnackBarError(context, errorData.res_desc);
-            },
-            orElse: () {
-              // Handle an unknown or unexpected response type
-              print("Unknown response type");
-              showSnackBarError(context, 'Invalid');
-            },
-          );
-        } else {
-          // Handle the case where an exception occurred or login failed
-          print("Login failed due to an exception or unknown error.");
-          showSnackBarError(context, 'Invalid');
-        }
+        loginResult.when(
+          login: (loginData) {
+            context
+                .read<GlobalState>()
+                .setCredential(loginData.accessToken, loginData.refreshToken);
+
+            showSnackBarSuccess(context, 'Login Success');
+            context.go('/');
+          },
+          error: (errorData) {
+            showSnackBarError(context, errorData.res_desc);
+          },
+          orElse: () {
+            showSnackBarError(context, 'Invalid API login');
+          },
+        );
       }
     } catch (e) {
       print('error function login, $e');

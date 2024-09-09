@@ -102,7 +102,10 @@ extension ThemeDataExtended on ThemeData {
   AppVariableTheme get appVariable => extension<AppVariableTheme>()!;
 }
 
+// Note. GlobalKey can access goRoute anywhere without context
+// final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final _router = GoRouter(
+  // navigatorKey: navigatorKey,
   initialLocation: '/splash',
   redirect: (context, state) {
     // Access the GlobalState (or any authentication state)
@@ -112,7 +115,9 @@ final _router = GoRouter(
     final bool isAuthenticated = globalState.accessToken != null;
 
     // If the user is not authenticated and is not on the login or splash page, redirect to login
-    if (!isAuthenticated && state.fullPath != '/login' && state.fullPath != '/splash') {
+    if (!isAuthenticated &&
+        state.fullPath != '/login' &&
+        state.fullPath != '/splash') {
       return '/login';
     }
 

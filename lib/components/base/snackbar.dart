@@ -6,7 +6,7 @@ void showSnackBarSuccess(BuildContext context, String message) {
   final snackBar = SnackBar(
     content: Text(message, style: Theme.of(context).appTexts.subtitle),
     backgroundColor: Theme.of(context).appColors.stateSuccess,
-    duration: Duration(seconds: 2), // The SnackBar will close after 2 seconds
+    duration: Duration(seconds: 3), // The SnackBar will close after 3 seconds
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
@@ -15,7 +15,7 @@ void showSnackBarError(BuildContext context, String message) {
   final snackBar = SnackBar(
     content: Text(message, style: Theme.of(context).appTexts.subtitle),
     backgroundColor: Theme.of(context).appColors.stateError,
-    duration: Duration(seconds: 2), // The SnackBar will close after 2 seconds
+    duration: Duration(seconds: 3), // The SnackBar will close after 3 seconds
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

@@ -40,3 +40,39 @@ class LoginService {
   }
 }
 
+class RefreshService {
+  static GraphqlQLConfig graphqlQLConfig = GraphqlQLConfig();
+  GraphQLClient client = graphqlQLConfig.clientToQuery();
+
+  Future<Mutation$refreshToken$refreshToken?> refreshToken({
+    required Input$RefreshTokenInput input,
+  }) async {
+    try {
+      // Create typed variables using Variables$Mutation$login
+      Variables$Mutation$refreshToken variables =
+          Variables$Mutation$refreshToken(input: input);
+
+      QueryResult result = await client.mutate(
+        MutationOptions(
+          fetchPolicy: FetchPolicy.noCache,
+          document:
+              documentNodeMutationrefreshToken, // Use the pre-defined DocumentNode for the mutation
+          variables: variables.toJson(), // Use toJson() to pass typed variables
+        ),
+      );
+
+      if (result.hasException) {
+        throw Exception(result.exception);
+      } else {
+        // Parse the typed response
+        Mutation$refreshToken refreshTokenResponse =
+            Mutation$refreshToken.fromJson(result.data ?? {});
+
+        // Return the actual login response (either success or error)
+        return refreshTokenResponse.refreshToken;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+}

@@ -30,9 +30,9 @@ class ExpansionTileData {
 class MedDrawer extends StatelessWidget {
   const MedDrawer({super.key});
 
-  void handleLogout(BuildContext context) {
+  void handleLogout(BuildContext context) async {
+    await context.read<GlobalState>().clearCredential();
     context.go('/login');
-    context.read<GlobalState>().clearCredential();
   }
 
   @override

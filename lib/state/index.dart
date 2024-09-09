@@ -73,7 +73,7 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCredential() async {
+  Future<void> clearCredential() async {
     accessToken = null;
     refreshToken = null;
     await SharedPreferencesHelper.removeAccessToken();
