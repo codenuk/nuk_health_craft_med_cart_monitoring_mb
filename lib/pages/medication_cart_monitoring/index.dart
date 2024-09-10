@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/button.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/input/base.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/input/select/select_text.dart';
@@ -12,6 +13,8 @@ import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/schema.graphql.
 import 'package:health_craft_med_cart_monitoring_mb/layouts/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 import 'package:health_craft_med_cart_monitoring_mb/services/monitoring.dart';
+import 'package:health_craft_med_cart_monitoring_mb/state/master_data.dart';
+import 'package:provider/provider.dart';
 
 class MedicationCartMonitoringPage extends StatefulWidget {
   @override
@@ -31,22 +34,38 @@ class _MedicationCartMonitoringPageState
   @override
   void initState() {
     super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await context.read<MasterDataState>().fetchAllBuilding(context);
+    });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
+
+    final optionsBuilding = context.watch<MasterDataState>().optionsBuilding;
+    if (dropdownValue == null &&
+        optionsBuilding != null &&
+        optionsBuilding.isNotEmpty) {
+      setState(() {
+        dropdownValue = optionsBuilding[0].value;
+      });
+    }
+
     fetchMonitoringDeviceInBuildingData();
   }
 
   Future<void> fetchMonitoringDeviceInBuildingData() async {
     // set state isLoading: true for make skeleton loading
 
+    if (dropdownValue == null) return;
+
+    print(dropdownValue);
     try {
       Input$MonitoringDeviceInBuildingFilterInput filter =
           Input$MonitoringDeviceInBuildingFilterInput(
-        buildingID: '39a61f51-b59f-4cac-a79e-b87a512d0cf2',
+        buildingID: dropdownValue!,
       );
 
       Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding? result =
@@ -85,6 +104,10 @@ class _MedicationCartMonitoringPageState
 
   @override
   Widget build(BuildContext context) {
+    final optionsBuilding = context.watch<MasterDataState>().optionsBuilding;
+    final isLoadingBuilding =
+        context.watch<MasterDataState>().isLoadingBuilding;
+
     return Scaffold(
       drawer: MedDrawer(),
       appBar: MedAppbar(title: 'Medication Cart Monitoring'),
@@ -136,15 +159,14 @@ class _MedicationCartMonitoringPageState
                             Expanded(
                               flex: 4,
                               child: InputSelectText(
-                                options: [
-                                  OptionText(value: 'Test', label: 'Test'),
-                                  OptionText(value: 'Test 2', label: 'Test 2')
-                                ],
+                                options: optionsBuilding ?? [],
                                 value: dropdownValue,
                                 onChange: (value) {
                                   setState(() {
                                     dropdownValue = value!;
                                   });
+                                  // Fetch the monitoring data based on the new dropdownValue
+                                  fetchMonitoringDeviceInBuildingData();
                                 },
                               ),
                             ),
@@ -161,7 +183,9 @@ class _MedicationCartMonitoringPageState
                         ),
                         SizedBox(height: 20),
                         BuildMonitoringList(
-                          floorList: monitoringDeviceInBuildingData?.floorList ?? [],
+                          floorList:
+                              monitoringDeviceInBuildingData?.floorList ?? [],
+                          menuView: menuView,
                         ),
                       ],
                     ),

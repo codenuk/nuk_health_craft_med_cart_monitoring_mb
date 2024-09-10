@@ -1,0 +1,19 @@
+query AllBuilding {
+  allBuilding {
+    __typename
+    ... on AllBuilding {
+      res_code
+      res_desc
+      items {
+        buildingID
+        buildingName
+        isActive # Only true
+        index # Before response, sort index asc
+      }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

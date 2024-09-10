@@ -10,6 +10,7 @@ import 'package:health_craft_med_cart_monitoring_mb/pages/patient_history/index.
 import 'package:health_craft_med_cart_monitoring_mb/pages/splash/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/configs/environment.dart';
 import 'package:health_craft_med_cart_monitoring_mb/state/index.dart';
+import 'package:health_craft_med_cart_monitoring_mb/state/master_data.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/color.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/font.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
 
               return MultiProvider(
                 providers: [
-                  ChangeNotifierProvider(create: (_) => null),
+                  ChangeNotifierProvider(create: (_) => MasterDataState()),
                 ],
                 child: MaterialApp.router(
                   title: 'Namer App',

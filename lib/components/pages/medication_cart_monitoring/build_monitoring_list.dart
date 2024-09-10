@@ -7,10 +7,12 @@ class BuildMonitoringList extends StatelessWidget {
   final List<
           Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding$floorList?>?
       floorList;
+      final String menuView;
 
   const BuildMonitoringList({
     super.key,
     required this.floorList,
+    required this.menuView,
   });
 
   @override
@@ -46,6 +48,7 @@ class BuildMonitoringList extends StatelessWidget {
           children: [
             BuildWardList(
               wardList: floor?.wardList ?? [],
+              menuView: menuView,
             )
           ],
         );

@@ -49,10 +49,12 @@ class _InputSelectTextState extends State<InputSelectText> {
                 ),
           ),
         DropdownButtonFormField(
+          isExpanded: true,
           dropdownColor: Theme.of(context).appColors.background,
           style: Theme.of(context).appTexts.h5.copyWith(
                 fontWeight: FontWeight.normal,
                 color: Theme.of(context).appColors.text,
+                // overflow: TextOverflow.ellipsis, // Add ellipsis for long text
               ),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -89,16 +91,32 @@ class _InputSelectTextState extends State<InputSelectText> {
             ),
             errorStyle: Theme.of(context).appTexts.body,
           ),
+          value: widget.value,
           onChanged: widget.onChange,
-          items: widget.options.map((value) {
+          selectedItemBuilder: (BuildContext context) => widget.options
+              .map(
+                (option) => Text(
+                  option.label,
+                  style: Theme.of(context).appTexts.h5.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).appColors.text,
+                      ),
+                ),
+              )
+              .toList(),
+          items: widget.options.map((option) {
+            final bool isSelected = widget.value == option.value;
+
             return DropdownMenuItem(
-              value: value.value,
+              value: option.value,
               child: Text(
-                value.label,
+                option.label,
                 style: Theme.of(context).appTexts.h5.copyWith(
-                fontWeight: FontWeight.normal,
-                color: Theme.of(context).appColors.text,
-              ),
+                      fontWeight: isSelected ? FontWeight.bold :FontWeight.normal,
+                      color: isSelected
+                          ? Theme.of(context).appColors.primaryMain
+                          : Theme.of(context).appColors.text,
+                    ),
               ),
             );
           }).toList(),
