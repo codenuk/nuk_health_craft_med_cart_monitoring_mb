@@ -161,9 +161,10 @@ final _router = GoRouter(
     ),
     GoRoute(
       name: 'patient_history',
-      path: '/patient_history',
+      path: '/patient_history/:wardID',
       builder: (context, state) {
-        return PatientHistoryPage();
+        final wardID = state.pathParameters["wardID"]!;
+        return PatientHistoryPage(wardID: wardID);
       },
     ),
   ],

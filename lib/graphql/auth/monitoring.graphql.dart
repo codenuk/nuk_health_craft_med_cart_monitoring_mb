@@ -2249,6 +2249,13 @@ const documentNodeQueryMonitoringDevice = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'wardID'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'temperature'),
                 alias: null,
                 arguments: [],
@@ -2822,6 +2829,7 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
     required this.model,
     this.imageURL,
     required this.location,
+    this.wardID,
     this.temperature,
     this.amountPatient,
     this.amountUser,
@@ -2850,6 +2858,7 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
     final l$model = json['model'];
     final l$imageURL = json['imageURL'];
     final l$location = json['location'];
+    final l$wardID = json['wardID'];
     final l$temperature = json['temperature'];
     final l$amountPatient = json['amountPatient'];
     final l$amountUser = json['amountUser'];
@@ -2877,6 +2886,7 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
       model: (l$model as String),
       imageURL: (l$imageURL as String?),
       location: (l$location as String),
+      wardID: (l$wardID as String?),
       temperature: (l$temperature as num?)?.toDouble(),
       amountPatient: (l$amountPatient as int?),
       amountUser: (l$amountUser as int?),
@@ -2936,6 +2946,8 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
   final String? imageURL;
 
   final String location;
+
+  final String? wardID;
 
   final double? temperature;
 
@@ -2998,6 +3010,8 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
     _resultData['imageURL'] = l$imageURL;
     final l$location = location;
     _resultData['location'] = l$location;
+    final l$wardID = wardID;
+    _resultData['wardID'] = l$wardID;
     final l$temperature = temperature;
     _resultData['temperature'] = l$temperature;
     final l$amountPatient = amountPatient;
@@ -3048,6 +3062,7 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
     final l$model = model;
     final l$imageURL = imageURL;
     final l$location = location;
+    final l$wardID = wardID;
     final l$temperature = temperature;
     final l$amountPatient = amountPatient;
     final l$amountUser = amountUser;
@@ -3075,6 +3090,7 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
       l$model,
       l$imageURL,
       l$location,
+      l$wardID,
       l$temperature,
       l$amountPatient,
       l$amountUser,
@@ -3141,6 +3157,11 @@ class Query$MonitoringDevice$monitoringDevice$$MonitoringDevice
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
+      return false;
+    }
+    final l$wardID = wardID;
+    final lOther$wardID = other.wardID;
+    if (l$wardID != lOther$wardID) {
       return false;
     }
     final l$temperature = temperature;
@@ -3276,6 +3297,7 @@ abstract class CopyWith$Query$MonitoringDevice$monitoringDevice$$MonitoringDevic
     String? model,
     String? imageURL,
     String? location,
+    String? wardID,
     double? temperature,
     int? amountPatient,
     int? amountUser,
@@ -3355,6 +3377,7 @@ class _CopyWithImpl$Query$MonitoringDevice$monitoringDevice$$MonitoringDevice<
     Object? model = _undefined,
     Object? imageURL = _undefined,
     Object? location = _undefined,
+    Object? wardID = _undefined,
     Object? temperature = _undefined,
     Object? amountPatient = _undefined,
     Object? amountUser = _undefined,
@@ -3396,6 +3419,7 @@ class _CopyWithImpl$Query$MonitoringDevice$monitoringDevice$$MonitoringDevice<
         location: location == _undefined || location == null
             ? _instance.location
             : (location as String),
+        wardID: wardID == _undefined ? _instance.wardID : (wardID as String?),
         temperature: temperature == _undefined
             ? _instance.temperature
             : (temperature as double?),
@@ -3568,6 +3592,7 @@ class _CopyWithStubImpl$Query$MonitoringDevice$monitoringDevice$$MonitoringDevic
     String? model,
     String? imageURL,
     String? location,
+    String? wardID,
     double? temperature,
     int? amountPatient,
     int? amountUser,

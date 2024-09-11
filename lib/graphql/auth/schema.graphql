@@ -431,6 +431,7 @@ type MonitoringDevice {
   deviceName: String
   imageURL: String
   location: String!
+  wardID: String
   temperature: Float
   amountPatient: Int
   amountUser: Int

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:go_router/go_router.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/button.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/snackbar.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/pages/medication_cart_monitoring_id/card_checkout_reason.dart';
@@ -148,6 +149,7 @@ class LayoutMobile extends StatelessWidget {
               text: 'ประวัติการใช้งาน',
               backgroundColor: Theme.of(context).appColors.primaryMain,
               textColor: Theme.of(context).appColors.white,
+              onTap: () => context.push('/patient_history/${monitoringDevice.wardID}'),
             ),
           ),
         ),

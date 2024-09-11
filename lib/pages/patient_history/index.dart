@@ -14,6 +14,13 @@ import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
 
 class PatientHistoryPage extends StatefulWidget {
+  final String wardID;
+
+  const PatientHistoryPage({
+    Key? key,
+    required this.wardID,
+  }) : super(key: key);
+
   @override
   State<PatientHistoryPage> createState() => _PatientHistoryPageState();
 }

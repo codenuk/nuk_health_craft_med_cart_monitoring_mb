@@ -52,6 +52,7 @@ query MonitoringDevice($filter: MonitoringDeviceFilterInput!) {
       imageURL
 
       location
+      wardID
 
       # Data from locker
       temperature

@@ -16,7 +16,6 @@ flutter gen-l10n
 $ npm install -g get-graphql-schema
 $ get-graphql-schema https://asarn28lj2.execute-api.ap-southeast-1.amazonaws.com/dev/v1/graphqlNonAuth > lib/graphql/nonAuth/schema.graphql
 $ get-graphql-schema --header "Authorization=Bearer TOKEN" https://asarn28lj2.execute-api.ap-southeast-1.amazonaws.com/dev/v1/graphql > lib/graphql/auth/schema.graphql
- > lib/graphql/auth/schema.graphql
 $ flutter pub run build_runner build
 ```
 
