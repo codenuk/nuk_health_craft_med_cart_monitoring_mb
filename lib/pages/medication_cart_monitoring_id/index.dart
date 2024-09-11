@@ -113,7 +113,10 @@ class _MedicationCartMonitoringPageState
                       isLoading: isLoadingMonitoringDevice,
                       monitoringDevice: monitoringDevice,
                     )
-                  : LayoutTablet(),
+                  : LayoutTablet(
+                      isLoading: isLoadingMonitoringDevice,
+                      monitoringDevice: monitoringDevice,
+                    ),
             ),
           ),
         ),
@@ -224,7 +227,6 @@ class LayoutMobile extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-
         ...?monitoringDevice?.lockerList?.asMap().entries.map(
           (entry) {
             int index = entry.key; // Get the index
@@ -252,8 +254,14 @@ class LayoutMobile extends StatelessWidget {
 }
 
 class LayoutTablet extends StatelessWidget {
+  final bool isLoading;
+  final Query$MonitoringDevice$monitoringDevice$$MonitoringDevice?
+      monitoringDevice;
+
   const LayoutTablet({
     super.key,
+    required this.isLoading,
+    required this.monitoringDevice,
   });
 
   @override
@@ -276,12 +284,16 @@ class LayoutTablet extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  'https://picsum.photos/200/300',
-                  fit: BoxFit.fill,
-                  height: 625,
+              child: Skeletonizer(
+                enabled: isLoading,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    monitoringDevice?.imageURL ??
+                        'https://picsum.photos/200/300',
+                    fit: BoxFit.fill,
+                    height: 625,
+                  ),
                 ),
               ),
             ),
@@ -290,23 +302,33 @@ class LayoutTablet extends StatelessWidget {
               flex: 1,
               child: Column(
                 children: [
-                  CardMedCart(
-                    deviceID: 'deviceID',
-                    isActive: true,
-                    amountPatient: 10,
-                    deviceName: 'TEST',
-                    location: 'TEST',
-                    temperature: 20,
-                    updatedAt: 'TEST',
+                  Skeletonizer(
+                    enabled: isLoading,
+                    child: CardMedCart(
+                      deviceID: monitoringDevice?.deviceID ?? '',
+                      isActive: monitoringDevice?.isActive ?? true,
+                      amountPatient: monitoringDevice?.amountPatient,
+                      deviceName: monitoringDevice?.deviceName,
+                      location: monitoringDevice?.location,
+                      temperature: monitoringDevice?.temperature,
+                      updatedAt: monitoringDevice?.updatedAt,
+                    ),
                   ),
                   SizedBox(height: 10),
-                  CardGender(
-                    femalePercent: 19.2,
-                    malePercent: 79.8,
-                    totalPatient: 300,
-                    totalCart: 10,
-                    totalActiveCart: 7,
-                    totalInActiveCart: 3,
+                  Skeletonizer(
+                    enabled: isLoading,
+                    child: CardGender(
+                      femalePercent:
+                          monitoringDevice?.totalFemalePatient.percent ?? 0,
+                      malePercent:
+                          monitoringDevice?.totalMalePatient.percent ?? 0,
+                      totalPatient: monitoringDevice?.totalPatient ?? 0,
+                      totalCart: monitoringDevice?.totalMedCart.total ?? 0,
+                      totalActiveCart:
+                          monitoringDevice?.totalMedCart.totalActive ?? 0,
+                      totalInActiveCart:
+                          monitoringDevice?.totalMedCart.totalInActive ?? 0,
+                    ),
                   ),
                 ],
               ),
@@ -318,21 +340,37 @@ class LayoutTablet extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: CardDispensingType(
-                qrCodePercent: 60,
-                manualPercent: 40,
-                totalQrCode: 1895,
-                totalManual: 300,
+              child: Skeletonizer(
+                enabled: isLoading,
+                child: CardDispensingType(
+                  qrCodePercent:
+                      monitoringDevice?.totalDispensingByQrCode.percent ?? 0,
+                  manualPercent:
+                      monitoringDevice?.totalDispensingByManual.percent ?? 0,
+                  totalQrCode:
+                      monitoringDevice?.totalDispensingByQrCode.amount ?? 0,
+                  totalManual:
+                      monitoringDevice?.totalDispensingByManual.amount ?? 0,
+                ),
               ),
             ),
             SizedBox(width: 10),
             Expanded(
               flex: 1,
-              child: CardCheckoutReason(
-                dischargePercent: 30,
-                movePatientToAnotherDrawerPercent: 10,
-                dischargeDeathPercent: 20,
-                movePatientToAnotherWardPercent: 40,
+              child: Skeletonizer(
+                enabled: isLoading,
+                child: CardCheckoutReason(
+                  dischargePercent:
+                      monitoringDevice?.totalReasonDischarge.percent ?? 0,
+                  movePatientToAnotherDrawerPercent: monitoringDevice
+                          ?.totalReasonMovePatientToAnotherDrawer.percent ??
+                      0,
+                  dischargeDeathPercent:
+                      monitoringDevice?.totalReasonDischargeDeath.percent ?? 0,
+                  movePatientToAnotherWardPercent: monitoringDevice
+                          ?.totalReasonMovePatientToAnotherWard.percent ??
+                      0,
+                ),
               ),
             ),
           ],
@@ -346,37 +384,54 @@ class LayoutTablet extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        GridView.builder(
-          itemCount: 2,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              mainAxisExtent: 200),
-          padding: EdgeInsets.symmetric(vertical: 20),
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) {
-            switch (index) {
-              case 0:
-                return CardLocker(
-                  no: 1,
-                  hn: 'TEST',
-                  patientName: 'TEST',
-                  roomNo: 'TEST',
-                );
-              case 1:
-                return CardLocker(
-                  no: 2,
-                  hn: null,
-                  patientName: null,
-                  roomNo: null,
-                );
-              default:
-                return SizedBox.shrink();
-            }
-          },
-        )
+
+        if (isLoading)
+          GridView.builder(
+            itemCount: 4,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 200),
+            padding: EdgeInsets.symmetric(vertical: 20),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              var d = monitoringDevice?.lockerList?[index];
+
+              return Skeletonizer(
+                enabled: isLoading,
+                child: CardLocker(
+                  no: index + 1,
+                  hn: d?.hn,
+                  patientName: d?.patientName,
+                  roomNo: d?.roomNo,
+                ),
+              );
+            },
+          )
+        else
+          GridView.builder(
+            itemCount: monitoringDevice?.lockerList?.length ?? 0,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 200),
+            padding: EdgeInsets.symmetric(vertical: 20),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              var d = monitoringDevice?.lockerList?[index];
+
+              return CardLocker(
+                no: index + 1,
+                hn: d?.hn,
+                patientName: d?.patientName,
+                roomNo: d?.roomNo,
+              );
+            },
+          )
       ],
     );
   }

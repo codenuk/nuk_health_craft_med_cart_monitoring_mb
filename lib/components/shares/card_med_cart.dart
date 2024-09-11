@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/shares/chip.dart';
 import 'package:health_craft_med_cart_monitoring_mb/layouts/card_layout.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
+import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
 import 'package:health_craft_med_cart_monitoring_mb/utils/other.dart';
 
 class CardMedCart extends StatelessWidget {
@@ -26,6 +29,9 @@ class CardMedCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FlutterView flutterView =
+        WidgetsBinding.instance.platformDispatcher.views.first;
+
     final split_string = location?.split(' / ');
 
     return CardLayout(
@@ -66,21 +72,24 @@ class CardMedCart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 85,
+                        width: flutterView.isRegularSmartphoneOrLess ? 85 : 95,
                         child: Text(
                           'Location',
                           style: Theme.of(context).appTexts.body,
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.42,
+                        width: flutterView.isRegularSmartphoneOrLess
+                            ? MediaQuery.of(context).size.width * 0.42
+                            : MediaQuery.of(context).size.width * 0.2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               location != null ? split_string![0] : '-',
                               style: Theme.of(context).appTexts.subtitle,
-                              maxLines: 2,
+                              maxLines:
+                                  flutterView.isRegularSmartphoneOrLess ? 2 : 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
@@ -89,7 +98,8 @@ class CardMedCart extends StatelessWidget {
                                   : '-',
                               style: Theme.of(context).appTexts.bodySm.copyWith(
                                   color: Theme.of(context).appColors.gray1),
-                              maxLines: 2,
+                              maxLines:
+                                  flutterView.isRegularSmartphoneOrLess ? 2 : 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
@@ -101,7 +111,7 @@ class CardMedCart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 85,
+                        width: flutterView.isRegularSmartphoneOrLess ? 85 : 95,
                         child: Text(
                           'Temperature',
                           style: Theme.of(context).appTexts.body,
@@ -127,7 +137,7 @@ class CardMedCart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 85,
+                        width: flutterView.isRegularSmartphoneOrLess ? 85 : 95,
                         child: Text(
                           'Patient',
                           style: Theme.of(context).appTexts.body,
