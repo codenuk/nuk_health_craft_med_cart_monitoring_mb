@@ -38,3 +38,81 @@ query MonitoringDeviceInBuilding(
     }
   }
 }
+
+query MonitoringDevice($filter: MonitoringDeviceFilterInput!) {
+  monitoringDevice(filter: $filter) {
+    __typename
+    ... on MonitoringDevice {
+      res_code
+      res_desc
+      deviceID
+      deviceName
+      isActive
+      model
+      imageURL
+
+      location
+
+      # Data from locker
+      temperature
+      amountPatient
+      amountUser
+      updatedAt
+
+      totalMalePatient {
+        percent
+        amount
+      }
+      totalFemalePatient {
+        percent
+        amount
+      }
+
+      totalPatient
+      totalMedCart {
+        total
+        totalActive
+        totalInActive
+      }
+
+      totalDispensingByQrCode {
+        percent
+        amount
+        amountPatient
+      }
+      totalDispensingByManual {
+        percent
+        amount
+        amountPatient
+      }
+
+      totalReasonDischarge {
+        percent
+        amount
+      }
+      totalReasonMovePatientToAnotherDrawer {
+        percent
+        amount
+      }
+      totalReasonDischargeDeath {
+        percent
+        amount
+      }
+      totalReasonMovePatientToAnotherWard {
+        percent
+        amount
+      }
+
+      lockerList {
+        recordLockerID
+        patientName
+        hn
+        roomNo
+      }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

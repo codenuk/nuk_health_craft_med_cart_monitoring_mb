@@ -27,12 +27,12 @@ class _MedicationCartMonitoringPageState
     extends State<MedicationCartMonitoringPage> {
   Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding?
       monitoringDeviceInBuildingData;
+  bool isLoadingMonitoringDeviceInBuilding = false;
 
   TextEditingController searchController = TextEditingController();
   String? dropdownValue;
   String searchValue = "";
   String menuView = 'All';
-  bool isLoadingMonitoringDeviceInBuilding = false;
 
   @override
   void initState() {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/shares/chip.dart';
 import 'package:health_craft_med_cart_monitoring_mb/layouts/card_layout.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
+import 'package:health_craft_med_cart_monitoring_mb/utils/other.dart';
 
 class CardMedCart extends StatelessWidget {
   final String? deviceName;
@@ -25,6 +26,8 @@ class CardMedCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final split_string = location?.split(' / ');
+
     return CardLayout(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +50,10 @@ class CardMedCart extends StatelessWidget {
                   ),
                 ],
               ),
-              CustomizeChip( icon: Icons.energy_savings_leaf ,status: isActive ? 'Active' : 'In-Active',),
+              CustomizeChip(
+                icon: Icons.energy_savings_leaf,
+                status: isActive ? 'Active' : 'In-Active',
+              ),
             ],
           ),
           Row(
@@ -66,19 +72,28 @@ class CardMedCart extends StatelessWidget {
                           style: Theme.of(context).appTexts.body,
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            location != null ? 'Ward 5' : '-',
-                            style: Theme.of(context).appTexts.subtitle,
-                          ),
-                          Text(
-                            location != null ? 'อาคาร A / ชั้น 1' : '-',
-                            style: Theme.of(context).appTexts.bodySm.copyWith(
-                                color: Theme.of(context).appColors.gray1),
-                          ),
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.42,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              location != null ? split_string![0] : '-',
+                              style: Theme.of(context).appTexts.subtitle,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              location != null
+                                  ? '${split_string![1]} / ${split_string[2]}'
+                                  : '-',
+                              style: Theme.of(context).appTexts.bodySm.copyWith(
+                                  color: Theme.of(context).appColors.gray1),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -96,7 +111,7 @@ class CardMedCart extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${temperature != null ? '26.8' : '-'} ํc',
+                            '${temperature != null ? temperature : '-'} ํc',
                             style: Theme.of(context).appTexts.subtitle,
                           ),
                           Text(
@@ -122,7 +137,7 @@ class CardMedCart extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${amountPatient != null ? '10' : '-'} People',
+                            '${amountPatient != null ? amountPatient : '-'} People',
                             style: Theme.of(context).appTexts.subtitle,
                           ),
                         ],
@@ -137,7 +152,7 @@ class CardMedCart extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              'Last updated ${updatedAt != null ? '14:32 - 25/02/2024' : '-'}',
+              'Last updated ${updatedAt != null ? formatUpdatedAt(updatedAt!) : '-'}',
               style: Theme.of(context).appTexts.bodySm.copyWith(
                     color: Theme.of(context).appColors.gray1,
                   ),
