@@ -113,7 +113,7 @@ class LaunchpadPage extends StatelessWidget {
                   ),
                   GridView.count(
                       childAspectRatio: flutterView.isRegularSmartphoneOrLess
-                          ? (1 / 1.2)
+                          ? (1 / 1.3)
                           : (1 / 0.9),
                       crossAxisCount:
                           flutterView.isRegularSmartphoneOrLess ? 3 : 4,

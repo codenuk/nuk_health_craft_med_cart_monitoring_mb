@@ -80,16 +80,15 @@ class CardMedCart extends StatelessWidget {
                       ),
                       SizedBox(
                         width: flutterView.isRegularSmartphoneOrLess
-                            ? MediaQuery.of(context).size.width * 0.42
-                            : MediaQuery.of(context).size.width * 0.2,
+                            ? MediaQuery.of(context).size.width * 0.3
+                            : MediaQuery.of(context).size.width * 0.18,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               location != null ? split_string![0] : '-',
                               style: Theme.of(context).appTexts.subtitle,
-                              maxLines:
-                                  flutterView.isRegularSmartphoneOrLess ? 2 : 1,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
@@ -98,8 +97,7 @@ class CardMedCart extends StatelessWidget {
                                   : '-',
                               style: Theme.of(context).appTexts.bodySm.copyWith(
                                   color: Theme.of(context).appColors.gray1),
-                              maxLines:
-                                  flutterView.isRegularSmartphoneOrLess ? 2 : 1,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
