@@ -15,6 +15,7 @@ import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 import 'package:health_craft_med_cart_monitoring_mb/services/monitoring.dart';
 import 'package:health_craft_med_cart_monitoring_mb/state/master_data.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class MedicationCartMonitoringPage extends StatefulWidget {
   @override
@@ -29,7 +30,9 @@ class _MedicationCartMonitoringPageState
 
   TextEditingController searchController = TextEditingController();
   String? dropdownValue;
+  String searchValue = "";
   String menuView = 'All';
+  bool isLoadingMonitoringDeviceInBuilding = false;
 
   @override
   void initState() {
@@ -57,11 +60,11 @@ class _MedicationCartMonitoringPageState
   }
 
   Future<void> fetchMonitoringDeviceInBuildingData() async {
-    // set state isLoading: true for make skeleton loading
-
     if (dropdownValue == null) return;
 
-    print(dropdownValue);
+    setState(() {
+      isLoadingMonitoringDeviceInBuilding = true;
+    });
     try {
       Input$MonitoringDeviceInBuildingFilterInput filter =
           Input$MonitoringDeviceInBuildingFilterInput(
@@ -92,13 +95,29 @@ class _MedicationCartMonitoringPageState
     } catch (e) {
       print('error function monitoringDeviceInBuilding, $e');
     } finally {
-      // set state isLoading: false for make skeleton loading
+      setState(() {
+        isLoadingMonitoringDeviceInBuilding = false;
+      });
     }
   }
 
   void onChangeMenu(String value) {
     setState(() {
       menuView = value;
+    });
+  }
+
+  void onChangeBuildingID(String? value) {
+    setState(() {
+      dropdownValue = value!;
+    });
+    // Fetch the monitoring data based on the new dropdownValue
+    fetchMonitoringDeviceInBuildingData();
+  }
+
+  void onSubmitSearch() {
+    setState(() {
+      searchValue = searchController.text;
     });
   }
 
@@ -148,7 +167,7 @@ class _MedicationCartMonitoringPageState
                                 backgroundColor:
                                     Theme.of(context).appColors.primaryMain,
                                 textColor: Theme.of(context).appColors.white,
-                                onTap: () => null,
+                                onTap: onSubmitSearch,
                               ),
                             ),
                           ],
@@ -158,16 +177,14 @@ class _MedicationCartMonitoringPageState
                           children: [
                             Expanded(
                               flex: 4,
-                              child: InputSelectText(
-                                options: optionsBuilding ?? [],
-                                value: dropdownValue,
-                                onChange: (value) {
-                                  setState(() {
-                                    dropdownValue = value!;
-                                  });
-                                  // Fetch the monitoring data based on the new dropdownValue
-                                  fetchMonitoringDeviceInBuildingData();
-                                },
+                              child: Skeletonizer(
+                                enabled: isLoadingBuilding,
+                                child: InputSelectText(
+                                  options: optionsBuilding ?? [],
+                                  value: dropdownValue,
+                                  onChange: (value) =>
+                                      onChangeBuildingID(value),
+                                ),
                               ),
                             ),
                             SizedBox(width: 10),
@@ -182,11 +199,47 @@ class _MedicationCartMonitoringPageState
                           ],
                         ),
                         SizedBox(height: 20),
-                        BuildMonitoringList(
-                          floorList:
-                              monitoringDeviceInBuildingData?.floorList ?? [],
-                          menuView: menuView,
-                        ),
+                        
+                        if (isLoadingBuilding ||
+                            isLoadingMonitoringDeviceInBuilding)
+                          Skeletonizer(
+                            enabled: isLoadingBuilding ||
+                                isLoadingMonitoringDeviceInBuilding,
+                            child: Column(
+                              children: [
+                                ...List.generate(
+                                  3,
+                                  (index) => Column(
+                                    children: [
+                                      Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        width: double.infinity,
+                                        height: 150,
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 12,),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/images/white-foreground.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(height: 16)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        else
+                          BuildMonitoringList(
+                            floorList:
+                                monitoringDeviceInBuildingData?.floorList ?? [],
+                            menuView: menuView,
+                            searchValue: searchValue,
+                          )
                       ],
                     ),
                   ),

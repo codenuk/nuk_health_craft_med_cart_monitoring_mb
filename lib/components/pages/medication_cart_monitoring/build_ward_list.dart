@@ -8,29 +8,41 @@ class BuildWardList extends StatelessWidget {
           Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding$floorList$wardList?>
       wardList;
   final String menuView;
+  final String searchValue;
 
   const BuildWardList({
     super.key,
     required this.wardList,
     required this.menuView,
+    required this.searchValue,
   });
 
-// Method to filter device list based on menuView
   List<Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding$floorList$wardList$deviceList?>
-      _filterDeviceList(
+      filterDeviceList(
           List<Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding$floorList$wardList$deviceList?>
               deviceList) {
-    switch (menuView) {
-      case 'Active':
-        // Return only devices where isActive is true
-        return deviceList.where((device) => device?.isActive == true).toList();
-      case 'In-Active':
-        // Return only devices where isActive is false
-        return deviceList.where((device) => device?.isActive == false).toList();
-      default:
-        // Return all devices (for "All" menuView)
-        return deviceList;
-    }
+    return deviceList.where((device) {
+      if (device == null) return false;
+
+      bool matchesMenuView = false;
+      switch (menuView) {
+        case 'Active':
+          matchesMenuView = device.isActive == true;
+        case 'In-Active':
+          matchesMenuView = device.isActive == false;
+        default:
+          matchesMenuView = true;
+      }
+
+      bool matchesSearchValue = searchValue.isEmpty ||
+          (device.deviceID.toLowerCase().contains(searchValue.toLowerCase())) ||
+          (device.deviceName
+                  ?.toLowerCase()
+                  .contains(searchValue.toLowerCase()) ??
+              false);
+
+      return matchesMenuView && matchesSearchValue;
+    }).toList();
   }
 
   @override
@@ -53,7 +65,7 @@ class BuildWardList extends StatelessWidget {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       children: wardList.map((ward) {
-        final filteredDeviceList = _filterDeviceList(ward?.deviceList ?? []);
+        final filteredDeviceList = filterDeviceList(ward?.deviceList ?? []);
         return Container(
           color: Theme.of(context).appColors.gray3,
           padding: EdgeInsets.all(10),

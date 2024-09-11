@@ -7,18 +7,22 @@ class BuildMonitoringList extends StatelessWidget {
   final List<
           Query$MonitoringDeviceInBuilding$monitoringDeviceInBuilding$$MonitoringDeviceInBuilding$floorList?>?
       floorList;
-      final String menuView;
+  final String menuView;
+  final String searchValue;
 
   const BuildMonitoringList({
     super.key,
     required this.floorList,
     required this.menuView,
+    required this.searchValue,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (floorList == null) {
-      return Center(child: Text('No floors available', style: Theme.of(context).appTexts.subtitle));
+    if (floorList == null || floorList!.isEmpty) {
+      return Center(
+          child: Text('No floors available',
+              style: Theme.of(context).appTexts.subtitle));
     }
 
     // Use ListView to display the list of ExpansionTile widgets
@@ -49,6 +53,7 @@ class BuildMonitoringList extends StatelessWidget {
             BuildWardList(
               wardList: floor?.wardList ?? [],
               menuView: menuView,
+              searchValue: searchValue,
             )
           ],
         );
