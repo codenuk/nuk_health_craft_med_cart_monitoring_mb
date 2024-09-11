@@ -17,3 +17,25 @@ query AllBuilding {
     }
   }
 }
+
+query AllWard {
+  allWard {
+    __typename
+    ... on AllWard {
+      res_code
+      res_desc
+      items {
+        buildingID
+        floorID
+        wardID
+        wardName
+        isActive # Only true
+        index # Before response, sort index asc
+      }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

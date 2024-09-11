@@ -1,0 +1,28 @@
+query ReportPatientHistory(
+  $filter: ReportPatientHistoryFilterInput!
+) {
+  reportPatientHistory(filter: $filter) {
+    __typename
+    ... on ReportPatientHistory {
+      res_code # '00', '98' , '99'
+      res_desc # 'success', 'Err msg', 'Err msg'
+      items {
+        checkInDate
+        roomNo
+        patientName
+        wardName
+        username
+        checkOutDate
+        deviceID
+        reason
+        isHaveDocument
+        
+        UUID
+      }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}

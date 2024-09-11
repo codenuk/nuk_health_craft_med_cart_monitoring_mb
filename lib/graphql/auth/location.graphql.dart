@@ -962,3 +962,1004 @@ class _CopyWithStubImpl$Query$AllBuilding$allBuilding$$Error<TRes>
   }) =>
       _res;
 }
+
+class Query$AllWard {
+  Query$AllWard({
+    this.allWard,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$AllWard.fromJson(Map<String, dynamic> json) {
+    final l$allWard = json['allWard'];
+    final l$$__typename = json['__typename'];
+    return Query$AllWard(
+      allWard: l$allWard == null
+          ? null
+          : Query$AllWard$allWard.fromJson((l$allWard as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$AllWard$allWard? allWard;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$allWard = allWard;
+    _resultData['allWard'] = l$allWard?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$allWard = allWard;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$allWard,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$AllWard) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$allWard = allWard;
+    final lOther$allWard = other.allWard;
+    if (l$allWard != lOther$allWard) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllWard on Query$AllWard {
+  CopyWith$Query$AllWard<Query$AllWard> get copyWith => CopyWith$Query$AllWard(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$AllWard<TRes> {
+  factory CopyWith$Query$AllWard(
+    Query$AllWard instance,
+    TRes Function(Query$AllWard) then,
+  ) = _CopyWithImpl$Query$AllWard;
+
+  factory CopyWith$Query$AllWard.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllWard;
+
+  TRes call({
+    Query$AllWard$allWard? allWard,
+    String? $__typename,
+  });
+  CopyWith$Query$AllWard$allWard<TRes> get allWard;
+}
+
+class _CopyWithImpl$Query$AllWard<TRes>
+    implements CopyWith$Query$AllWard<TRes> {
+  _CopyWithImpl$Query$AllWard(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllWard _instance;
+
+  final TRes Function(Query$AllWard) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? allWard = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$AllWard(
+        allWard: allWard == _undefined
+            ? _instance.allWard
+            : (allWard as Query$AllWard$allWard?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$AllWard$allWard<TRes> get allWard {
+    final local$allWard = _instance.allWard;
+    return local$allWard == null
+        ? CopyWith$Query$AllWard$allWard.stub(_then(_instance))
+        : CopyWith$Query$AllWard$allWard(
+            local$allWard, (e) => call(allWard: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$AllWard<TRes>
+    implements CopyWith$Query$AllWard<TRes> {
+  _CopyWithStubImpl$Query$AllWard(this._res);
+
+  TRes _res;
+
+  call({
+    Query$AllWard$allWard? allWard,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$AllWard$allWard<TRes> get allWard =>
+      CopyWith$Query$AllWard$allWard.stub(_res);
+}
+
+const documentNodeQueryAllWard = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'AllWard'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'allWard'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          InlineFragmentNode(
+            typeCondition: TypeConditionNode(
+                on: NamedTypeNode(
+              name: NameNode(value: 'AllWard'),
+              isNonNull: false,
+            )),
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'res_code'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'res_desc'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'items'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'buildingID'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'floorID'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'wardID'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'wardName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'isActive'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'index'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          InlineFragmentNode(
+            typeCondition: TypeConditionNode(
+                on: NamedTypeNode(
+              name: NameNode(value: 'Error'),
+              isNonNull: false,
+            )),
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'res_code'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'res_desc'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class Query$AllWard$allWard {
+  Query$AllWard$allWard({required this.$__typename});
+
+  factory Query$AllWard$allWard.fromJson(Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "AllWard":
+        return Query$AllWard$allWard$$AllWard.fromJson(json);
+
+      case "Error":
+        return Query$AllWard$allWard$$Error.fromJson(json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Query$AllWard$allWard($__typename: (l$$__typename as String));
+    }
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$AllWard$allWard) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllWard$allWard on Query$AllWard$allWard {
+  CopyWith$Query$AllWard$allWard<Query$AllWard$allWard> get copyWith =>
+      CopyWith$Query$AllWard$allWard(
+        this,
+        (i) => i,
+      );
+  _T when<_T>({
+    required _T Function(Query$AllWard$allWard$$AllWard) allWard,
+    required _T Function(Query$AllWard$allWard$$Error) error,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "AllWard":
+        return allWard(this as Query$AllWard$allWard$$AllWard);
+
+      case "Error":
+        return error(this as Query$AllWard$allWard$$Error);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$AllWard$allWard$$AllWard)? allWard,
+    _T Function(Query$AllWard$allWard$$Error)? error,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "AllWard":
+        if (allWard != null) {
+          return allWard(this as Query$AllWard$allWard$$AllWard);
+        } else {
+          return orElse();
+        }
+
+      case "Error":
+        if (error != null) {
+          return error(this as Query$AllWard$allWard$$Error);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
+}
+
+abstract class CopyWith$Query$AllWard$allWard<TRes> {
+  factory CopyWith$Query$AllWard$allWard(
+    Query$AllWard$allWard instance,
+    TRes Function(Query$AllWard$allWard) then,
+  ) = _CopyWithImpl$Query$AllWard$allWard;
+
+  factory CopyWith$Query$AllWard$allWard.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllWard$allWard;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Query$AllWard$allWard<TRes>
+    implements CopyWith$Query$AllWard$allWard<TRes> {
+  _CopyWithImpl$Query$AllWard$allWard(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllWard$allWard _instance;
+
+  final TRes Function(Query$AllWard$allWard) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) => _then(Query$AllWard$allWard(
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$AllWard$allWard<TRes>
+    implements CopyWith$Query$AllWard$allWard<TRes> {
+  _CopyWithStubImpl$Query$AllWard$allWard(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Query$AllWard$allWard$$AllWard implements Query$AllWard$allWard {
+  Query$AllWard$allWard$$AllWard({
+    required this.res_code,
+    required this.res_desc,
+    this.items,
+    this.$__typename = 'AllWard',
+  });
+
+  factory Query$AllWard$allWard$$AllWard.fromJson(Map<String, dynamic> json) {
+    final l$res_code = json['res_code'];
+    final l$res_desc = json['res_desc'];
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$AllWard$allWard$$AllWard(
+      res_code: (l$res_code as String),
+      res_desc: (l$res_desc as String),
+      items: (l$items as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$AllWard$allWard$$AllWard$items.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String res_code;
+
+  final String res_desc;
+
+  final List<Query$AllWard$allWard$$AllWard$items?>? items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$res_code = res_code;
+    _resultData['res_code'] = l$res_code;
+    final l$res_desc = res_desc;
+    _resultData['res_desc'] = l$res_desc;
+    final l$items = items;
+    _resultData['items'] = l$items?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$res_code = res_code;
+    final l$res_desc = res_desc;
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$res_code,
+      l$res_desc,
+      l$items == null ? null : Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$AllWard$allWard$$AllWard) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$res_code = res_code;
+    final lOther$res_code = other.res_code;
+    if (l$res_code != lOther$res_code) {
+      return false;
+    }
+    final l$res_desc = res_desc;
+    final lOther$res_desc = other.res_desc;
+    if (l$res_desc != lOther$res_desc) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != null && lOther$items != null) {
+      if (l$items.length != lOther$items.length) {
+        return false;
+      }
+      for (int i = 0; i < l$items.length; i++) {
+        final l$items$entry = l$items[i];
+        final lOther$items$entry = lOther$items[i];
+        if (l$items$entry != lOther$items$entry) {
+          return false;
+        }
+      }
+    } else if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllWard$allWard$$AllWard
+    on Query$AllWard$allWard$$AllWard {
+  CopyWith$Query$AllWard$allWard$$AllWard<Query$AllWard$allWard$$AllWard>
+      get copyWith => CopyWith$Query$AllWard$allWard$$AllWard(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$AllWard$allWard$$AllWard<TRes> {
+  factory CopyWith$Query$AllWard$allWard$$AllWard(
+    Query$AllWard$allWard$$AllWard instance,
+    TRes Function(Query$AllWard$allWard$$AllWard) then,
+  ) = _CopyWithImpl$Query$AllWard$allWard$$AllWard;
+
+  factory CopyWith$Query$AllWard$allWard$$AllWard.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllWard$allWard$$AllWard;
+
+  TRes call({
+    String? res_code,
+    String? res_desc,
+    List<Query$AllWard$allWard$$AllWard$items?>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$AllWard$allWard$$AllWard$items?>? Function(
+              Iterable<
+                  CopyWith$Query$AllWard$allWard$$AllWard$items<
+                      Query$AllWard$allWard$$AllWard$items>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$AllWard$allWard$$AllWard<TRes>
+    implements CopyWith$Query$AllWard$allWard$$AllWard<TRes> {
+  _CopyWithImpl$Query$AllWard$allWard$$AllWard(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllWard$allWard$$AllWard _instance;
+
+  final TRes Function(Query$AllWard$allWard$$AllWard) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? res_code = _undefined,
+    Object? res_desc = _undefined,
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$AllWard$allWard$$AllWard(
+        res_code: res_code == _undefined || res_code == null
+            ? _instance.res_code
+            : (res_code as String),
+        res_desc: res_desc == _undefined || res_desc == null
+            ? _instance.res_desc
+            : (res_desc as String),
+        items: items == _undefined
+            ? _instance.items
+            : (items as List<Query$AllWard$allWard$$AllWard$items?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes items(
+          Iterable<Query$AllWard$allWard$$AllWard$items?>? Function(
+                  Iterable<
+                      CopyWith$Query$AllWard$allWard$$AllWard$items<
+                          Query$AllWard$allWard$$AllWard$items>?>?)
+              _fn) =>
+      call(
+          items: _fn(_instance.items?.map((e) => e == null
+              ? null
+              : CopyWith$Query$AllWard$allWard$$AllWard$items(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$AllWard$allWard$$AllWard<TRes>
+    implements CopyWith$Query$AllWard$allWard$$AllWard<TRes> {
+  _CopyWithStubImpl$Query$AllWard$allWard$$AllWard(this._res);
+
+  TRes _res;
+
+  call({
+    String? res_code,
+    String? res_desc,
+    List<Query$AllWard$allWard$$AllWard$items?>? items,
+    String? $__typename,
+  }) =>
+      _res;
+
+  items(_fn) => _res;
+}
+
+class Query$AllWard$allWard$$AllWard$items {
+  Query$AllWard$allWard$$AllWard$items({
+    required this.buildingID,
+    required this.floorID,
+    required this.wardID,
+    required this.wardName,
+    required this.isActive,
+    required this.index,
+    this.$__typename = 'AllWardItem',
+  });
+
+  factory Query$AllWard$allWard$$AllWard$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$buildingID = json['buildingID'];
+    final l$floorID = json['floorID'];
+    final l$wardID = json['wardID'];
+    final l$wardName = json['wardName'];
+    final l$isActive = json['isActive'];
+    final l$index = json['index'];
+    final l$$__typename = json['__typename'];
+    return Query$AllWard$allWard$$AllWard$items(
+      buildingID: (l$buildingID as String),
+      floorID: (l$floorID as String),
+      wardID: (l$wardID as String),
+      wardName: (l$wardName as String),
+      isActive: (l$isActive as bool),
+      index: (l$index as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String buildingID;
+
+  final String floorID;
+
+  final String wardID;
+
+  final String wardName;
+
+  final bool isActive;
+
+  final int index;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$buildingID = buildingID;
+    _resultData['buildingID'] = l$buildingID;
+    final l$floorID = floorID;
+    _resultData['floorID'] = l$floorID;
+    final l$wardID = wardID;
+    _resultData['wardID'] = l$wardID;
+    final l$wardName = wardName;
+    _resultData['wardName'] = l$wardName;
+    final l$isActive = isActive;
+    _resultData['isActive'] = l$isActive;
+    final l$index = index;
+    _resultData['index'] = l$index;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$buildingID = buildingID;
+    final l$floorID = floorID;
+    final l$wardID = wardID;
+    final l$wardName = wardName;
+    final l$isActive = isActive;
+    final l$index = index;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$buildingID,
+      l$floorID,
+      l$wardID,
+      l$wardName,
+      l$isActive,
+      l$index,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$AllWard$allWard$$AllWard$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$buildingID = buildingID;
+    final lOther$buildingID = other.buildingID;
+    if (l$buildingID != lOther$buildingID) {
+      return false;
+    }
+    final l$floorID = floorID;
+    final lOther$floorID = other.floorID;
+    if (l$floorID != lOther$floorID) {
+      return false;
+    }
+    final l$wardID = wardID;
+    final lOther$wardID = other.wardID;
+    if (l$wardID != lOther$wardID) {
+      return false;
+    }
+    final l$wardName = wardName;
+    final lOther$wardName = other.wardName;
+    if (l$wardName != lOther$wardName) {
+      return false;
+    }
+    final l$isActive = isActive;
+    final lOther$isActive = other.isActive;
+    if (l$isActive != lOther$isActive) {
+      return false;
+    }
+    final l$index = index;
+    final lOther$index = other.index;
+    if (l$index != lOther$index) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllWard$allWard$$AllWard$items
+    on Query$AllWard$allWard$$AllWard$items {
+  CopyWith$Query$AllWard$allWard$$AllWard$items<
+          Query$AllWard$allWard$$AllWard$items>
+      get copyWith => CopyWith$Query$AllWard$allWard$$AllWard$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$AllWard$allWard$$AllWard$items<TRes> {
+  factory CopyWith$Query$AllWard$allWard$$AllWard$items(
+    Query$AllWard$allWard$$AllWard$items instance,
+    TRes Function(Query$AllWard$allWard$$AllWard$items) then,
+  ) = _CopyWithImpl$Query$AllWard$allWard$$AllWard$items;
+
+  factory CopyWith$Query$AllWard$allWard$$AllWard$items.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllWard$allWard$$AllWard$items;
+
+  TRes call({
+    String? buildingID,
+    String? floorID,
+    String? wardID,
+    String? wardName,
+    bool? isActive,
+    int? index,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$AllWard$allWard$$AllWard$items<TRes>
+    implements CopyWith$Query$AllWard$allWard$$AllWard$items<TRes> {
+  _CopyWithImpl$Query$AllWard$allWard$$AllWard$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllWard$allWard$$AllWard$items _instance;
+
+  final TRes Function(Query$AllWard$allWard$$AllWard$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? buildingID = _undefined,
+    Object? floorID = _undefined,
+    Object? wardID = _undefined,
+    Object? wardName = _undefined,
+    Object? isActive = _undefined,
+    Object? index = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$AllWard$allWard$$AllWard$items(
+        buildingID: buildingID == _undefined || buildingID == null
+            ? _instance.buildingID
+            : (buildingID as String),
+        floorID: floorID == _undefined || floorID == null
+            ? _instance.floorID
+            : (floorID as String),
+        wardID: wardID == _undefined || wardID == null
+            ? _instance.wardID
+            : (wardID as String),
+        wardName: wardName == _undefined || wardName == null
+            ? _instance.wardName
+            : (wardName as String),
+        isActive: isActive == _undefined || isActive == null
+            ? _instance.isActive
+            : (isActive as bool),
+        index: index == _undefined || index == null
+            ? _instance.index
+            : (index as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$AllWard$allWard$$AllWard$items<TRes>
+    implements CopyWith$Query$AllWard$allWard$$AllWard$items<TRes> {
+  _CopyWithStubImpl$Query$AllWard$allWard$$AllWard$items(this._res);
+
+  TRes _res;
+
+  call({
+    String? buildingID,
+    String? floorID,
+    String? wardID,
+    String? wardName,
+    bool? isActive,
+    int? index,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$AllWard$allWard$$Error implements Query$AllWard$allWard {
+  Query$AllWard$allWard$$Error({
+    required this.res_code,
+    required this.res_desc,
+    this.$__typename = 'Error',
+  });
+
+  factory Query$AllWard$allWard$$Error.fromJson(Map<String, dynamic> json) {
+    final l$res_code = json['res_code'];
+    final l$res_desc = json['res_desc'];
+    final l$$__typename = json['__typename'];
+    return Query$AllWard$allWard$$Error(
+      res_code: (l$res_code as String),
+      res_desc: (l$res_desc as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String res_code;
+
+  final String res_desc;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$res_code = res_code;
+    _resultData['res_code'] = l$res_code;
+    final l$res_desc = res_desc;
+    _resultData['res_desc'] = l$res_desc;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$res_code = res_code;
+    final l$res_desc = res_desc;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$res_code,
+      l$res_desc,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$AllWard$allWard$$Error) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$res_code = res_code;
+    final lOther$res_code = other.res_code;
+    if (l$res_code != lOther$res_code) {
+      return false;
+    }
+    final l$res_desc = res_desc;
+    final lOther$res_desc = other.res_desc;
+    if (l$res_desc != lOther$res_desc) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllWard$allWard$$Error
+    on Query$AllWard$allWard$$Error {
+  CopyWith$Query$AllWard$allWard$$Error<Query$AllWard$allWard$$Error>
+      get copyWith => CopyWith$Query$AllWard$allWard$$Error(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$AllWard$allWard$$Error<TRes> {
+  factory CopyWith$Query$AllWard$allWard$$Error(
+    Query$AllWard$allWard$$Error instance,
+    TRes Function(Query$AllWard$allWard$$Error) then,
+  ) = _CopyWithImpl$Query$AllWard$allWard$$Error;
+
+  factory CopyWith$Query$AllWard$allWard$$Error.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllWard$allWard$$Error;
+
+  TRes call({
+    String? res_code,
+    String? res_desc,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$AllWard$allWard$$Error<TRes>
+    implements CopyWith$Query$AllWard$allWard$$Error<TRes> {
+  _CopyWithImpl$Query$AllWard$allWard$$Error(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllWard$allWard$$Error _instance;
+
+  final TRes Function(Query$AllWard$allWard$$Error) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? res_code = _undefined,
+    Object? res_desc = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$AllWard$allWard$$Error(
+        res_code: res_code == _undefined || res_code == null
+            ? _instance.res_code
+            : (res_code as String),
+        res_desc: res_desc == _undefined || res_desc == null
+            ? _instance.res_desc
+            : (res_desc as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$AllWard$allWard$$Error<TRes>
+    implements CopyWith$Query$AllWard$allWard$$Error<TRes> {
+  _CopyWithStubImpl$Query$AllWard$allWard$$Error(this._res);
+
+  TRes _res;
+
+  call({
+    String? res_code,
+    String? res_desc,
+    String? $__typename,
+  }) =>
+      _res;
+}
