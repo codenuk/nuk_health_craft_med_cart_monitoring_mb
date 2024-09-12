@@ -1,7 +1,7 @@
 ## How to run
 ``` sh
 flutter run # For Specific Device 
-flutter run -d all # For All Device
+flutter run -d all # For All Device -> before run -> flutter clean
 ```
 
 ## How to update file generate mutiple lang

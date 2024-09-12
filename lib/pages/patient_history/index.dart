@@ -39,7 +39,7 @@ class PatientHistoryPage extends StatefulWidget {
 class _PatientHistoryPageState extends State<PatientHistoryPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController patientNameController = TextEditingController();
-  String? wardValue;
+  String wardValue = 'NULL';
   List<OptionInt>? yearList;
   int? yearValue;
   List<OptionInt>? monthList;
@@ -73,18 +73,11 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
     super.didChangeDependencies();
 
     final optionsWard = context.watch<MasterDataState>().optionsWard;
-    if (wardValue == null &&
-        widget.wardID != 'NULL' &&
+    if (widget.wardID != 'NULL' &&
         optionsWard != null &&
         optionsWard.isNotEmpty) {
       setState(() {
         wardValue = widget.wardID;
-      });
-    } else if (wardValue == null &&
-        optionsWard != null &&
-        optionsWard.isNotEmpty) {
-      setState(() {
-        wardValue = optionsWard[0].value;
       });
     }
 
@@ -92,7 +85,6 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
   }
 
   Future<void> fetchReportPatientHistoryData() async {
-    if (wardValue == null) return;
     if (yearValue == null) return;
     if (monthValue == null) return;
 
@@ -103,7 +95,7 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
       Input$ReportPatientHistoryFilterInput filter =
           Input$ReportPatientHistoryFilterInput(
         patientName: patientNameController.text,
-        wardID: wardValue,
+        wardID: wardValue == 'NULL' ? null : wardValue,
         year: yearValue!,
         month: monthValue!,
         deviceID: widget.deviceID == 'NULL' ? null : widget.deviceID,
@@ -192,7 +184,13 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
                                   enabled: isLoadingWard,
                                   child: InputSelectText(
                                     label: 'Ward',
-                                    options: optionsWard ?? [],
+                                    options: optionsWard != null
+                                        ? [
+                                            OptionText(
+                                                value: 'NULL', label: '-'),
+                                            ...optionsWard
+                                          ]
+                                        : [],
                                     value: wardValue,
                                     onChange: (value) {
                                       setState(() {
@@ -246,7 +244,7 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
                           ),
                         ),
                         SizedBox(height: 10),
-                        if (isLoadingReportPatientHistory)
+                        if (isLoadingReportPatientHistory || isLoadingWard)
                           GridView.builder(
                             itemCount: 4,
                             gridDelegate:

@@ -91,6 +91,9 @@ class _CardPatientState extends State<CardPatient> {
         WidgetsBinding.instance.platformDispatcher.views.first;
 
     final double widthLabel = flutterView.isRegularSmartphoneOrLess ? 100 : 130;
+    final double widthValue = flutterView.isRegularSmartphoneOrLess
+        ? MediaQuery.of(context).size.width * 0.54
+        : MediaQuery.of(context).size.width * 0.24;
 
     return CardLayout(
       child: Column(
@@ -105,11 +108,14 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.checkInDate == null
-                    ? '-'
-                    : formatUpdatedAt(widget.checkInDate!),
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.checkInDate == null
+                      ? '-'
+                      : formatUpdatedAt(widget.checkInDate!),
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -123,9 +129,12 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.roomNo ?? '-',
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.roomNo ?? '-',
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -139,9 +148,14 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.patientName ?? '-',
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.patientName ?? '-',
+                  style: Theme.of(context).appTexts.subtitle,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
               ),
             ],
           ),
@@ -155,9 +169,12 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.wardName,
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.wardName,
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -171,9 +188,12 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.username,
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.username,
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -187,11 +207,14 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.checkOutDate == null
-                    ? '-'
-                    : formatUpdatedAt(widget.checkOutDate!),
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.checkOutDate == null
+                      ? '-'
+                      : formatUpdatedAt(widget.checkOutDate!),
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -205,9 +228,12 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.deviceID,
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.deviceID,
+                  style: Theme.of(context).appTexts.subtitle,
+                ),
               ),
             ],
           ),
@@ -221,9 +247,14 @@ class _CardPatientState extends State<CardPatient> {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              Text(
-                widget.reason ?? '-',
-                style: Theme.of(context).appTexts.subtitle,
+              SizedBox(
+                width: widthValue,
+                child: Text(
+                  widget.reason ?? '-',
+                  style: Theme.of(context).appTexts.subtitle,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
               ),
             ],
           ),
