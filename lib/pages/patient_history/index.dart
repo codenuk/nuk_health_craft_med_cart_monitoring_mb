@@ -60,7 +60,7 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
       yearValue = years[0].value;
 
       monthList = months;
-      monthValue = 6; // DateTime.now().month - 1;
+      monthValue = DateTime.now().month - 1;
     });
 
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -149,7 +149,10 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
 
     return Scaffold(
       drawer: MedDrawer(),
-      appBar: MedAppbar(title: 'Patient History'),
+      appBar: MedAppbar(
+        title: 'Patient History',
+        goBack: true,
+      ),
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -243,7 +246,6 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
                           ),
                         ),
                         SizedBox(height: 10),
-                        
                         if (isLoadingReportPatientHistory)
                           GridView.builder(
                             itemCount: 4,

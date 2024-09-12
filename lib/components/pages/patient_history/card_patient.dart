@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:health_craft_med_cart_monitoring_mb/components/base/loading_dialog.dart';
 import 'package:health_craft_med_cart_monitoring_mb/components/base/snackbar.dart';
 import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/report.graphql.dart';
 import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/schema.graphql.dart';
@@ -41,16 +43,12 @@ class CardPatient extends StatefulWidget {
 }
 
 class _CardPatientState extends State<CardPatient> {
-  bool isLoading = false;
   String? pdfUrl;
 
   Future<void> onDownload() async {
-    setState(() {
-      isLoading = true;
-    });
+    showLoadingDialog(context);
     try {
-      Input$PrintMedicalRecordInput input =
-          Input$PrintMedicalRecordInput(
+      Input$PrintMedicalRecordInput input = Input$PrintMedicalRecordInput(
         UUID: widget.UUID!,
         deviceID: widget.deviceID,
       );
@@ -68,6 +66,10 @@ class _CardPatientState extends State<CardPatient> {
           setState(() {
             pdfUrl = result.pdfUrl;
           });
+
+          final encodedUrl = Uri.encodeComponent(result.pdfUrl);
+
+          context.push('/web_view/$encodedUrl');
         },
         error: (errorData) {
           showSnackBarError(context, errorData.res_desc);
@@ -79,9 +81,7 @@ class _CardPatientState extends State<CardPatient> {
     } catch (e) {
       print('error function printMedicalRecord, $e');
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      hideLoadingDialog(context);
     }
   }
 
@@ -92,7 +92,6 @@ class _CardPatientState extends State<CardPatient> {
 
     final double widthLabel = flutterView.isRegularSmartphoneOrLess ? 100 : 130;
 
-// https://health-craft-med-cart-monitoring-bucket.s3.ap-southeast-1.amazonaws.com/pdf/report/dev/HOSPITAL/TEST/TEST_2024-07-09.pdf
     return CardLayout(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +106,9 @@ class _CardPatientState extends State<CardPatient> {
                 ),
               ),
               Text(
-                widget.checkInDate == null ? '-' : formatUpdatedAt(widget.checkInDate!),
+                widget.checkInDate == null
+                    ? '-'
+                    : formatUpdatedAt(widget.checkInDate!),
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -187,7 +188,9 @@ class _CardPatientState extends State<CardPatient> {
                 ),
               ),
               Text(
-                widget.checkOutDate == null ? '-' : formatUpdatedAt(widget.checkOutDate!),
+                widget.checkOutDate == null
+                    ? '-'
+                    : formatUpdatedAt(widget.checkOutDate!),
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],

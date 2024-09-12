@@ -65,7 +65,7 @@ class LaunchpadPage extends StatelessWidget {
       Menu(
         title: 'Patient History',
         image: 'assets/images/launchpad/Dashboard.png',
-        action: () => context.go('/patient_history'),
+        action: () => context.go('/patient_history/NULL/NULL'),
       ),
       Menu(
         title: 'Activity Logs',

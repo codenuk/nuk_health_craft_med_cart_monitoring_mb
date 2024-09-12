@@ -69,7 +69,7 @@ class MedDrawer extends StatelessWidget {
           ChildItem(
             title: 'Patient History',
             action: () {
-              context.go('/patient_history');
+              context.go('/patient_history/NULL/NULL');
             },
           ),
         ],

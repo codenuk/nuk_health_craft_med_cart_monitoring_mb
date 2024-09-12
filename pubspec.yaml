@@ -26,7 +26,7 @@ dependencies:
   graphql_flutter: ^5.0.0
   jwt_decoder: ^2.0.1
   skeletonizer: ^1.4.2
-  webview_flutter: ^4.8.0
+  webview_flutter: ^4.2.2
   
 dev_dependencies:
   flutter_test:

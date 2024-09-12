@@ -9,6 +9,7 @@ import 'package:health_craft_med_cart_monitoring_mb/pages/medication_cart_monito
 import 'package:health_craft_med_cart_monitoring_mb/pages/patient_history/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/pages/splash/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/configs/environment.dart';
+import 'package:health_craft_med_cart_monitoring_mb/pages/web_view/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/state/index.dart';
 import 'package:health_craft_med_cart_monitoring_mb/state/master_data.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
@@ -166,6 +167,16 @@ final _router = GoRouter(
         final wardID = state.pathParameters["wardID"]!;
         final deviceID = state.pathParameters["deviceID"]!;
         return PatientHistoryPage(wardID: wardID, deviceID: deviceID);
+      },
+    ),
+    GoRoute(
+      name: 'web_view',
+      path: '/web_view/:url',
+      builder: (context, state) {
+        final encodedUrl = state.pathParameters["url"]!;
+        final url = Uri.decodeComponent(encodedUrl); // Decode the URL
+
+        return WebViewPage(url: url);
       },
     ),
   ],
