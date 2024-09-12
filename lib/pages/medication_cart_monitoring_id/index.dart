@@ -149,7 +149,7 @@ class LayoutMobile extends StatelessWidget {
               text: 'ประวัติการใช้งาน',
               backgroundColor: Theme.of(context).appColors.primaryMain,
               textColor: Theme.of(context).appColors.white,
-              onTap: () => context.push('/patient_history/${monitoringDevice?.wardID}'),
+              onTap: () => context.push('/patient_history/${monitoringDevice?.wardID}/${monitoringDevice?.deviceID}'),
             ),
           ),
         ),
@@ -278,6 +278,7 @@ class LayoutTablet extends StatelessWidget {
               text: 'ประวัติการใช้งาน',
               backgroundColor: Theme.of(context).appColors.primaryMain,
               textColor: Theme.of(context).appColors.white,
+              onTap: () => context.push('/patient_history/${monitoringDevice?.wardID}/${monitoringDevice?.deviceID}'),
             ),
           ),
         ),
@@ -402,7 +403,7 @@ class LayoutTablet extends StatelessWidget {
               var d = monitoringDevice?.lockerList?[index];
 
               return Skeletonizer(
-                enabled: isLoading,
+                enabled: true,
                 child: CardLocker(
                   no: index + 1,
                   hn: d?.hn,

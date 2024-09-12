@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
 
-class OptionNum {
-  final num value;
+class OptionInt {
+  final int value;
   final String label;
 
-  const OptionNum({
+  const OptionInt({
     required this.value,
     required this.label,
   });
 }
 
-class InputSelectNum extends StatefulWidget {
+class InputSelectInt extends StatefulWidget {
   final String? label;
-  final num? value;
-  final List<OptionNum> options;
+  final int? value;
+  final List<OptionInt> options;
   final void Function(dynamic) onChange;
   final String? Function(num?)? validator;
+  final bool disabled;
 
-  const InputSelectNum({
+  const InputSelectInt({
     super.key,
     this.label,
     required this.options,
     required this.value,
     required this.onChange,
     this.validator,
+    this.disabled = false,
   });
 
   @override
-  State<InputSelectNum> createState() => _InputSelectNumState();
+  State<InputSelectInt> createState() => _InputSelectIntState();
 }
 
-class _InputSelectNumState extends State<InputSelectNum> {
+class _InputSelectIntState extends State<InputSelectInt> {
   bool _hasError = false;
 
   @override
@@ -49,6 +51,7 @@ class _InputSelectNumState extends State<InputSelectNum> {
                 ),
           ),
         DropdownButtonFormField(
+          isExpanded: true,
           dropdownColor: Theme.of(context).appColors.background,
           style: Theme.of(context).appTexts.h5.copyWith(
                 fontWeight: FontWeight.normal,
@@ -89,16 +92,32 @@ class _InputSelectNumState extends State<InputSelectNum> {
             ),
             errorStyle: Theme.of(context).appTexts.body,
           ),
-          onChanged: widget.onChange,
-          items: widget.options.map((value) {
+          value: widget.value,
+          onChanged: widget.disabled ? null : widget.onChange,
+          selectedItemBuilder: (BuildContext context) => widget.options
+              .map(
+                (option) => Text(
+                  option.label,
+                  style: Theme.of(context).appTexts.h5.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).appColors.text,
+                      ),
+                ),
+              )
+              .toList(),
+          items: widget.options.map((option) {
+                        final bool isSelected = widget.value == option.value;
+
             return DropdownMenuItem(
-              value: value.value,
+              value: option.value,
               child: Text(
-                value.label,
+                option.label,
                 style: Theme.of(context).appTexts.h5.copyWith(
-                fontWeight: FontWeight.normal,
-                color: Theme.of(context).appColors.text,
-              ),
+                    fontWeight: isSelected ? FontWeight.bold :FontWeight.normal,
+                      color: isSelected
+                          ? Theme.of(context).appColors.primaryMain
+                          : Theme.of(context).appColors.text,
+                    ),
               ),
             );
           }).toList(),

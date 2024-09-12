@@ -32,3 +32,33 @@ class AllBuildingService {
     }
   }
 }
+
+class AllWardService {
+  static AuthGraphqlQLConfig graphqlQLConfig = AuthGraphqlQLConfig();
+
+  Future<Query$AllWard$allWard?> allWard({
+    required BuildContext context,
+  }) async {
+    GraphQLClient client = graphqlQLConfig.clientToQuery(context);
+    try {
+
+      QueryResult result = await client.query(
+        QueryOptions(
+          fetchPolicy: FetchPolicy.noCache,
+          document: documentNodeQueryAllWard,
+        ),
+      );
+
+      if (result.hasException) {
+        throw Exception(result.exception);
+      } else {
+        Query$AllWard response =
+            Query$AllWard.fromJson(result.data ?? {});
+
+        return response.allWard;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+}

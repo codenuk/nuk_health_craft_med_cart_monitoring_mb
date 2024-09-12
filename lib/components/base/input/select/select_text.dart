@@ -17,6 +17,7 @@ class InputSelectText extends StatefulWidget {
   final List<OptionText> options;
   final void Function(dynamic) onChange;
   final String? Function(String?)? validator;
+  final bool disabled;
 
   const InputSelectText({
     super.key,
@@ -25,6 +26,7 @@ class InputSelectText extends StatefulWidget {
     required this.value,
     required this.onChange,
     this.validator,
+    this.disabled = false,
   });
 
   @override
@@ -92,7 +94,7 @@ class _InputSelectTextState extends State<InputSelectText> {
             errorStyle: Theme.of(context).appTexts.body,
           ),
           value: widget.value,
-          onChanged: widget.onChange,
+          onChanged: widget.disabled ? null : widget.onChange,
           selectedItemBuilder: (BuildContext context) => widget.options
               .map(
                 (option) => Text(

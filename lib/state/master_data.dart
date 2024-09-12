@@ -52,4 +52,50 @@ class MasterDataState extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  List<Query$AllWard$allWard$$AllWard$items?>? listWard;
+  List<OptionText>? optionsWard;
+  bool isLoadingWard = false;
+  Future<void> fetchAllWard(BuildContext context) async {
+    isLoadingWard = true;
+    notifyListeners();
+    try {
+      Query$AllWard$allWard? result = await AllWardService().allWard(
+        context: context,
+      );
+
+      if (result == null) return;
+
+      result.when(
+        allWard: (result) {
+          listWard = result.items;
+
+          optionsWard = listWard
+              ?.map((item) {
+                if (item != null) {
+                  return OptionText(
+                    value: item.wardID,
+                    label: item.wardName,
+                  );
+                }
+                return null;
+              })
+              .where((element) => element != null)
+              .cast<OptionText>()
+              .toList();
+        },
+        error: (errorData) {
+          showSnackBarError(context, errorData.res_desc);
+        },
+        orElse: () {
+          showSnackBarError(context, 'Invalid API allWard');
+        },
+      );
+    } catch (e) {
+      print('error function allWard, $e');
+    } finally {
+      isLoadingWard = false;
+      notifyListeners();
+    }
+  }
 }
