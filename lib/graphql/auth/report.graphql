@@ -1,6 +1,4 @@
-query ReportPatientHistory(
-  $filter: ReportPatientHistoryFilterInput!
-) {
+query ReportPatientHistory($filter: ReportPatientHistoryFilterInput!) {
   reportPatientHistory(filter: $filter) {
     __typename
     ... on ReportPatientHistory {
@@ -16,9 +14,24 @@ query ReportPatientHistory(
         deviceID
         reason
         isHaveDocument
-        
+
         UUID
       }
+    }
+    ... on Error {
+      res_code
+      res_desc
+    }
+  }
+}
+
+mutation printMedicalRecord($input: PrintMedicalRecordInput!) {
+  printMedicalRecord(input: $input) {
+    ... on MutationPrintMedicalRecord {
+      res_code
+      res_desc
+      case
+      pdfUrl
     }
     ... on Error {
       res_code

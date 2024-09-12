@@ -7,7 +7,8 @@ import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/schema.graphql.
 class ReportPatientHistoryService {
   static AuthGraphqlQLConfig graphqlQLConfig = AuthGraphqlQLConfig();
 
-  Future<Query$ReportPatientHistory$reportPatientHistory?> reportPatientHistory({
+  Future<Query$ReportPatientHistory$reportPatientHistory?>
+      reportPatientHistory({
     required BuildContext context,
     required Input$ReportPatientHistoryFilterInput filter,
   }) async {
@@ -33,6 +34,42 @@ class ReportPatientHistoryService {
 
         // Return the actual login response (either success or error)
         return response.reportPatientHistory;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+}
+
+class PrintMedicalRecordService {
+  static AuthGraphqlQLConfig graphqlQLConfig = AuthGraphqlQLConfig();
+
+  Future<Mutation$printMedicalRecord$printMedicalRecord?> printMedicalRecord({
+    required BuildContext context,
+    required Input$PrintMedicalRecordInput input,
+  }) async {
+    GraphQLClient client = graphqlQLConfig.clientToQuery(context);
+    try {
+      Variables$Mutation$printMedicalRecord variables =
+          Variables$Mutation$printMedicalRecord(input: input);
+
+      QueryResult result = await client.mutate(
+        MutationOptions(
+          fetchPolicy: FetchPolicy.noCache,
+          document: documentNodeMutationprintMedicalRecord,
+          variables: variables.toJson(),
+        ),
+      );
+
+      if (result.hasException) {
+        throw Exception(result.exception);
+      } else {
+        // Parse the typed response
+        Mutation$printMedicalRecord response =
+            Mutation$printMedicalRecord.fromJson(result.data ?? {});
+
+        // Return the actual login response (either success or error)
+        return response.printMedicalRecord;
       }
     } catch (e) {
       return null;

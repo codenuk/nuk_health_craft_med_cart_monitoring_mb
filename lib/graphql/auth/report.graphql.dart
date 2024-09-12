@@ -1305,3 +1305,890 @@ class _CopyWithStubImpl$Query$ReportPatientHistory$reportPatientHistory$$Error<
   }) =>
       _res;
 }
+
+class Variables$Mutation$printMedicalRecord {
+  factory Variables$Mutation$printMedicalRecord(
+          {required Input$PrintMedicalRecordInput input}) =>
+      Variables$Mutation$printMedicalRecord._({
+        r'input': input,
+      });
+
+  Variables$Mutation$printMedicalRecord._(this._$data);
+
+  factory Variables$Mutation$printMedicalRecord.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$input = data['input'];
+    result$data['input'] = Input$PrintMedicalRecordInput.fromJson(
+        (l$input as Map<String, dynamic>));
+    return Variables$Mutation$printMedicalRecord._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$PrintMedicalRecordInput get input =>
+      (_$data['input'] as Input$PrintMedicalRecordInput);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$input = input;
+    result$data['input'] = l$input.toJson();
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$printMedicalRecord<
+          Variables$Mutation$printMedicalRecord>
+      get copyWith => CopyWith$Variables$Mutation$printMedicalRecord(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$printMedicalRecord) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input != lOther$input) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$input = input;
+    return Object.hashAll([l$input]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$printMedicalRecord<TRes> {
+  factory CopyWith$Variables$Mutation$printMedicalRecord(
+    Variables$Mutation$printMedicalRecord instance,
+    TRes Function(Variables$Mutation$printMedicalRecord) then,
+  ) = _CopyWithImpl$Variables$Mutation$printMedicalRecord;
+
+  factory CopyWith$Variables$Mutation$printMedicalRecord.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$printMedicalRecord;
+
+  TRes call({Input$PrintMedicalRecordInput? input});
+}
+
+class _CopyWithImpl$Variables$Mutation$printMedicalRecord<TRes>
+    implements CopyWith$Variables$Mutation$printMedicalRecord<TRes> {
+  _CopyWithImpl$Variables$Mutation$printMedicalRecord(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$printMedicalRecord _instance;
+
+  final TRes Function(Variables$Mutation$printMedicalRecord) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? input = _undefined}) =>
+      _then(Variables$Mutation$printMedicalRecord._({
+        ..._instance._$data,
+        if (input != _undefined && input != null)
+          'input': (input as Input$PrintMedicalRecordInput),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$printMedicalRecord<TRes>
+    implements CopyWith$Variables$Mutation$printMedicalRecord<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$printMedicalRecord(this._res);
+
+  TRes _res;
+
+  call({Input$PrintMedicalRecordInput? input}) => _res;
+}
+
+class Mutation$printMedicalRecord {
+  Mutation$printMedicalRecord({
+    required this.printMedicalRecord,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$printMedicalRecord.fromJson(Map<String, dynamic> json) {
+    final l$printMedicalRecord = json['printMedicalRecord'];
+    final l$$__typename = json['__typename'];
+    return Mutation$printMedicalRecord(
+      printMedicalRecord:
+          Mutation$printMedicalRecord$printMedicalRecord.fromJson(
+              (l$printMedicalRecord as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$printMedicalRecord$printMedicalRecord printMedicalRecord;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$printMedicalRecord = printMedicalRecord;
+    _resultData['printMedicalRecord'] = l$printMedicalRecord.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$printMedicalRecord = printMedicalRecord;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$printMedicalRecord,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$printMedicalRecord) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$printMedicalRecord = printMedicalRecord;
+    final lOther$printMedicalRecord = other.printMedicalRecord;
+    if (l$printMedicalRecord != lOther$printMedicalRecord) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$printMedicalRecord
+    on Mutation$printMedicalRecord {
+  CopyWith$Mutation$printMedicalRecord<Mutation$printMedicalRecord>
+      get copyWith => CopyWith$Mutation$printMedicalRecord(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$printMedicalRecord<TRes> {
+  factory CopyWith$Mutation$printMedicalRecord(
+    Mutation$printMedicalRecord instance,
+    TRes Function(Mutation$printMedicalRecord) then,
+  ) = _CopyWithImpl$Mutation$printMedicalRecord;
+
+  factory CopyWith$Mutation$printMedicalRecord.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$printMedicalRecord;
+
+  TRes call({
+    Mutation$printMedicalRecord$printMedicalRecord? printMedicalRecord,
+    String? $__typename,
+  });
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes>
+      get printMedicalRecord;
+}
+
+class _CopyWithImpl$Mutation$printMedicalRecord<TRes>
+    implements CopyWith$Mutation$printMedicalRecord<TRes> {
+  _CopyWithImpl$Mutation$printMedicalRecord(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$printMedicalRecord _instance;
+
+  final TRes Function(Mutation$printMedicalRecord) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? printMedicalRecord = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$printMedicalRecord(
+        printMedicalRecord:
+            printMedicalRecord == _undefined || printMedicalRecord == null
+                ? _instance.printMedicalRecord
+                : (printMedicalRecord
+                    as Mutation$printMedicalRecord$printMedicalRecord),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes>
+      get printMedicalRecord {
+    final local$printMedicalRecord = _instance.printMedicalRecord;
+    return CopyWith$Mutation$printMedicalRecord$printMedicalRecord(
+        local$printMedicalRecord, (e) => call(printMedicalRecord: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$printMedicalRecord<TRes>
+    implements CopyWith$Mutation$printMedicalRecord<TRes> {
+  _CopyWithStubImpl$Mutation$printMedicalRecord(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$printMedicalRecord$printMedicalRecord? printMedicalRecord,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes>
+      get printMedicalRecord =>
+          CopyWith$Mutation$printMedicalRecord$printMedicalRecord.stub(_res);
+}
+
+const documentNodeMutationprintMedicalRecord = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'printMedicalRecord'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'input')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'PrintMedicalRecordInput'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'printMedicalRecord'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'input'),
+            value: VariableNode(name: NameNode(value: 'input')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          InlineFragmentNode(
+            typeCondition: TypeConditionNode(
+                on: NamedTypeNode(
+              name: NameNode(value: 'MutationPrintMedicalRecord'),
+              isNonNull: false,
+            )),
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'res_code'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'res_desc'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'case'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'pdfUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          InlineFragmentNode(
+            typeCondition: TypeConditionNode(
+                on: NamedTypeNode(
+              name: NameNode(value: 'Error'),
+              isNonNull: false,
+            )),
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'res_code'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'res_desc'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class Mutation$printMedicalRecord$printMedicalRecord {
+  Mutation$printMedicalRecord$printMedicalRecord({required this.$__typename});
+
+  factory Mutation$printMedicalRecord$printMedicalRecord.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "MutationPrintMedicalRecord":
+        return Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord
+            .fromJson(json);
+
+      case "Error":
+        return Mutation$printMedicalRecord$printMedicalRecord$$Error.fromJson(
+            json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Mutation$printMedicalRecord$printMedicalRecord(
+            $__typename: (l$$__typename as String));
+    }
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$printMedicalRecord$printMedicalRecord) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$printMedicalRecord$printMedicalRecord
+    on Mutation$printMedicalRecord$printMedicalRecord {
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord<
+          Mutation$printMedicalRecord$printMedicalRecord>
+      get copyWith => CopyWith$Mutation$printMedicalRecord$printMedicalRecord(
+            this,
+            (i) => i,
+          );
+  _T when<_T>({
+    required _T Function(
+            Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord)
+        mutationPrintMedicalRecord,
+    required _T Function(Mutation$printMedicalRecord$printMedicalRecord$$Error)
+        error,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "MutationPrintMedicalRecord":
+        return mutationPrintMedicalRecord(this
+            as Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord);
+
+      case "Error":
+        return error(
+            this as Mutation$printMedicalRecord$printMedicalRecord$$Error);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord)?
+        mutationPrintMedicalRecord,
+    _T Function(Mutation$printMedicalRecord$printMedicalRecord$$Error)? error,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "MutationPrintMedicalRecord":
+        if (mutationPrintMedicalRecord != null) {
+          return mutationPrintMedicalRecord(this
+              as Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord);
+        } else {
+          return orElse();
+        }
+
+      case "Error":
+        if (error != null) {
+          return error(
+              this as Mutation$printMedicalRecord$printMedicalRecord$$Error);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
+}
+
+abstract class CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes> {
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord(
+    Mutation$printMedicalRecord$printMedicalRecord instance,
+    TRes Function(Mutation$printMedicalRecord$printMedicalRecord) then,
+  ) = _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord;
+
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord<TRes>
+    implements CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes> {
+  _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$printMedicalRecord$printMedicalRecord _instance;
+
+  final TRes Function(Mutation$printMedicalRecord$printMedicalRecord) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$printMedicalRecord$printMedicalRecord(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord<TRes>
+    implements CopyWith$Mutation$printMedicalRecord$printMedicalRecord<TRes> {
+  _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord
+    implements Mutation$printMedicalRecord$printMedicalRecord {
+  Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord({
+    required this.res_code,
+    required this.res_desc,
+    required this.$case,
+    required this.pdfUrl,
+    this.$__typename = 'MutationPrintMedicalRecord',
+  });
+
+  factory Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord.fromJson(
+      Map<String, dynamic> json) {
+    final l$res_code = json['res_code'];
+    final l$res_desc = json['res_desc'];
+    final l$$case = json['case'];
+    final l$pdfUrl = json['pdfUrl'];
+    final l$$__typename = json['__typename'];
+    return Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+      res_code: (l$res_code as String),
+      res_desc: (l$res_desc as String),
+      $case: (l$$case as String),
+      pdfUrl: (l$pdfUrl as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String res_code;
+
+  final String res_desc;
+
+  final String $case;
+
+  final String pdfUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$res_code = res_code;
+    _resultData['res_code'] = l$res_code;
+    final l$res_desc = res_desc;
+    _resultData['res_desc'] = l$res_desc;
+    final l$$case = $case;
+    _resultData['case'] = l$$case;
+    final l$pdfUrl = pdfUrl;
+    _resultData['pdfUrl'] = l$pdfUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$res_code = res_code;
+    final l$res_desc = res_desc;
+    final l$$case = $case;
+    final l$pdfUrl = pdfUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$res_code,
+      l$res_desc,
+      l$$case,
+      l$pdfUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$res_code = res_code;
+    final lOther$res_code = other.res_code;
+    if (l$res_code != lOther$res_code) {
+      return false;
+    }
+    final l$res_desc = res_desc;
+    final lOther$res_desc = other.res_desc;
+    if (l$res_desc != lOther$res_desc) {
+      return false;
+    }
+    final l$$case = $case;
+    final lOther$$case = other.$case;
+    if (l$$case != lOther$$case) {
+      return false;
+    }
+    final l$pdfUrl = pdfUrl;
+    final lOther$pdfUrl = other.pdfUrl;
+    if (l$pdfUrl != lOther$pdfUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord
+    on Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord {
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+          Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord>
+      get copyWith =>
+          CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+    TRes> {
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+    Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord
+        instance,
+    TRes Function(
+            Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord)
+        then,
+  ) = _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord;
+
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord;
+
+  TRes call({
+    String? res_code,
+    String? res_desc,
+    String? $case,
+    String? pdfUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+        TRes>
+    implements
+        CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+            TRes> {
+  _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord
+      _instance;
+
+  final TRes Function(
+          Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? res_code = _undefined,
+    Object? res_desc = _undefined,
+    Object? $case = _undefined,
+    Object? pdfUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+        res_code: res_code == _undefined || res_code == null
+            ? _instance.res_code
+            : (res_code as String),
+        res_desc: res_desc == _undefined || res_desc == null
+            ? _instance.res_desc
+            : (res_desc as String),
+        $case: $case == _undefined || $case == null
+            ? _instance.$case
+            : ($case as String),
+        pdfUrl: pdfUrl == _undefined || pdfUrl == null
+            ? _instance.pdfUrl
+            : (pdfUrl as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+        TRes>
+    implements
+        CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord<
+            TRes> {
+  _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$MutationPrintMedicalRecord(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? res_code,
+    String? res_desc,
+    String? $case,
+    String? pdfUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$printMedicalRecord$printMedicalRecord$$Error
+    implements Mutation$printMedicalRecord$printMedicalRecord {
+  Mutation$printMedicalRecord$printMedicalRecord$$Error({
+    required this.res_code,
+    required this.res_desc,
+    this.$__typename = 'Error',
+  });
+
+  factory Mutation$printMedicalRecord$printMedicalRecord$$Error.fromJson(
+      Map<String, dynamic> json) {
+    final l$res_code = json['res_code'];
+    final l$res_desc = json['res_desc'];
+    final l$$__typename = json['__typename'];
+    return Mutation$printMedicalRecord$printMedicalRecord$$Error(
+      res_code: (l$res_code as String),
+      res_desc: (l$res_desc as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String res_code;
+
+  final String res_desc;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$res_code = res_code;
+    _resultData['res_code'] = l$res_code;
+    final l$res_desc = res_desc;
+    _resultData['res_desc'] = l$res_desc;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$res_code = res_code;
+    final l$res_desc = res_desc;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$res_code,
+      l$res_desc,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$printMedicalRecord$printMedicalRecord$$Error) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$res_code = res_code;
+    final lOther$res_code = other.res_code;
+    if (l$res_code != lOther$res_code) {
+      return false;
+    }
+    final l$res_desc = res_desc;
+    final lOther$res_desc = other.res_desc;
+    if (l$res_desc != lOther$res_desc) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$printMedicalRecord$printMedicalRecord$$Error
+    on Mutation$printMedicalRecord$printMedicalRecord$$Error {
+  CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error<
+          Mutation$printMedicalRecord$printMedicalRecord$$Error>
+      get copyWith =>
+          CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error<
+    TRes> {
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error(
+    Mutation$printMedicalRecord$printMedicalRecord$$Error instance,
+    TRes Function(Mutation$printMedicalRecord$printMedicalRecord$$Error) then,
+  ) = _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error;
+
+  factory CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error;
+
+  TRes call({
+    String? res_code,
+    String? res_desc,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error<TRes>
+    implements
+        CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error<TRes> {
+  _CopyWithImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$printMedicalRecord$printMedicalRecord$$Error _instance;
+
+  final TRes Function(Mutation$printMedicalRecord$printMedicalRecord$$Error)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? res_code = _undefined,
+    Object? res_desc = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$printMedicalRecord$printMedicalRecord$$Error(
+        res_code: res_code == _undefined || res_code == null
+            ? _instance.res_code
+            : (res_code as String),
+        res_desc: res_desc == _undefined || res_desc == null
+            ? _instance.res_desc
+            : (res_desc as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error<
+        TRes>
+    implements
+        CopyWith$Mutation$printMedicalRecord$printMedicalRecord$$Error<TRes> {
+  _CopyWithStubImpl$Mutation$printMedicalRecord$printMedicalRecord$$Error(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? res_code,
+    String? res_desc,
+    String? $__typename,
+  }) =>
+      _res;
+}

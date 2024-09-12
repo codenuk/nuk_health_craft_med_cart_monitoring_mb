@@ -1,12 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:health_craft_med_cart_monitoring_mb/components/base/snackbar.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/report.graphql.dart';
+import 'package:health_craft_med_cart_monitoring_mb/graphql/auth/schema.graphql.dart';
 import 'package:health_craft_med_cart_monitoring_mb/layouts/card_layout.dart';
 import 'package:health_craft_med_cart_monitoring_mb/main.dart';
+import 'package:health_craft_med_cart_monitoring_mb/services/report.dart';
 import 'package:health_craft_med_cart_monitoring_mb/theme/breakpoint.dart';
 import 'package:health_craft_med_cart_monitoring_mb/utils/other.dart';
 
-class CardPatient extends StatelessWidget {
+class CardPatient extends StatefulWidget {
   final String? checkInDate;
   final String? roomNo;
   final String? patientName;
@@ -16,6 +20,7 @@ class CardPatient extends StatelessWidget {
   final String deviceID;
   final String? reason;
   final bool isHaveDocument;
+  final String? UUID;
 
   const CardPatient({
     super.key,
@@ -28,10 +33,56 @@ class CardPatient extends StatelessWidget {
     required this.deviceID,
     required this.reason,
     required this.isHaveDocument,
+    required this.UUID,
   });
 
+  @override
+  State<CardPatient> createState() => _CardPatientState();
+}
+
+class _CardPatientState extends State<CardPatient> {
+  bool isLoading = false;
+  String? pdfUrl;
+
   Future<void> onDownload() async {
-    
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      Input$PrintMedicalRecordInput input =
+          Input$PrintMedicalRecordInput(
+        UUID: widget.UUID!,
+        deviceID: widget.deviceID,
+      );
+
+      Mutation$printMedicalRecord$printMedicalRecord? result =
+          await PrintMedicalRecordService().printMedicalRecord(
+        context: context,
+        input: input,
+      );
+
+      if (result == null) return;
+
+      result.when(
+        mutationPrintMedicalRecord: (result) {
+          setState(() {
+            pdfUrl = result.pdfUrl;
+          });
+        },
+        error: (errorData) {
+          showSnackBarError(context, errorData.res_desc);
+        },
+        orElse: () {
+          showSnackBarError(context, 'Invalid API printMedicalRecord');
+        },
+      );
+    } catch (e) {
+      print('error function printMedicalRecord, $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
@@ -41,6 +92,7 @@ class CardPatient extends StatelessWidget {
 
     final double widthLabel = flutterView.isRegularSmartphoneOrLess ? 100 : 130;
 
+// https://health-craft-med-cart-monitoring-bucket.s3.ap-southeast-1.amazonaws.com/pdf/report/dev/HOSPITAL/TEST/TEST_2024-07-09.pdf
     return CardLayout(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +107,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                checkInDate == null ? '-' : formatUpdatedAt(checkInDate!),
+                widget.checkInDate == null ? '-' : formatUpdatedAt(widget.checkInDate!),
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -71,7 +123,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                roomNo ?? '-',
+                widget.roomNo ?? '-',
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -87,7 +139,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                patientName ?? '-',
+                widget.patientName ?? '-',
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -103,7 +155,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                wardName,
+                widget.wardName,
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -119,7 +171,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                username,
+                widget.username,
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -135,7 +187,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                checkOutDate == null ? '-' : formatUpdatedAt(checkOutDate!),
+                widget.checkOutDate == null ? '-' : formatUpdatedAt(widget.checkOutDate!),
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -151,7 +203,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                deviceID,
+                widget.deviceID,
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -167,7 +219,7 @@ class CardPatient extends StatelessWidget {
                 ),
               ),
               Text(
-                reason ?? '-',
+                widget.reason ?? '-',
                 style: Theme.of(context).appTexts.subtitle,
               ),
             ],
@@ -182,7 +234,7 @@ class CardPatient extends StatelessWidget {
                   style: Theme.of(context).appTexts.body,
                 ),
               ),
-              if (isHaveDocument)
+              if (widget.isHaveDocument)
                 GestureDetector(
                   onTap: onDownload,
                   child: Icon(

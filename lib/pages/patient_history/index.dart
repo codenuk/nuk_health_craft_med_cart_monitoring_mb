@@ -270,6 +270,7 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
                                     deviceID: '',
                                     reason: '',
                                     isHaveDocument: true,
+                                    UUID: '',
                                   ));
                             },
                           )
@@ -301,6 +302,7 @@ class _PatientHistoryPageState extends State<PatientHistoryPage> {
                                 deviceID: d.deviceID,
                                 reason: d.reason,
                                 isHaveDocument: d.isHaveDocument,
+                                UUID: d.UUID,
                               );
                             },
                           )
